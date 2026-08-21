@@ -1,256 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Will You Be Mine? ❤️</title>
+<title>Just For You ❤️</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #ff6f91, #ff9a9e, #fbc2eb);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* LOGIN / WELCOME SCREEN */
+
+#welcomeScreen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.welcomeBox {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 25px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.20);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.20);
+}
+
+.heartIcon {
+    font-size: 65px;
+    animation: heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat {
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.welcomeBox h1 {
+    font-size: 35px;
+    margin: 15px 0;
+}
+
+.welcomeBox p {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.inputBox {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+.continueBtn {
+    margin-top: 15px;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    background: #ff1744;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(0,0,0,0.2);
+}
+
+.continueBtn:hover {
+    transform: scale(1.05);
+}
+
+#errorMessage {
+    display: none;
+    margin-top: 12px;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+/* MAIN WEBSITE */
+
+#mainWebsite {
+    display: none;
+}
+
+.container {
+    width: 92%;
+    max-width: 850px;
+    margin: auto;
+    padding: 35px 0 60px;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+section {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+
+/* PHOTOS */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 3px solid white;
+}
+
+
+/* MUSIC */
+
+.music-button {
+    border: none;
+    background: white;
+    color: #d81b60;
+    padding: 15px 28px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.song-name {
+    margin-top: 15px;
+}
+
+
+/* MESSAGE */
+
+.proposalText {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.question {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.answer {
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background: #ff1744;
+    color: white;
+}
+
+#noBtn {
+    background: white;
+    color: #e91e63;
+}
+
+#successMessage {
+    display: none;
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* HEARTS */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+    animation: floatHeart 5s linear forwards;
+    z-index: 999;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
     }
 
-    body {
-      font-family: "Poppins", Arial, sans-serif;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3, #c471ed);
-      color: white;
-      text-align: center;
-      overflow-x: hidden;
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
     }
+}
 
-    .container {
-      width: 92%;
-      max-width: 850px;
-      margin: auto;
-      padding: 35px 0 60px;
-    }
+
+/* MOBILE */
+
+@media(max-width:600px) {
 
     h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    }
-
-    .subtitle {
-      font-size: 17px;
-      margin-bottom: 35px;
-      opacity: 0.95;
-    }
-
-    section {
-      background: rgba(255,255,255,0.16);
-      backdrop-filter: blur(12px);
-      border-radius: 25px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.15);
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      font-size: 27px;
-    }
-
-    /* Photos */
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+        font-size: 32px;
     }
 
     .gallery img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 18px;
-      border: 3px solid rgba(255,255,255,0.7);
-      transition: 0.4s;
-      cursor: pointer;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.04);
-    }
-
-    /* Music */
-
-    .music-button {
-      border: none;
-      background: white;
-      color: #e91e63;
-      padding: 14px 25px;
-      border-radius: 50px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      transition: 0.3s;
-    }
-
-    .music-button:hover {
-      transform: scale(1.05);
-    }
-
-    .song-name {
-      margin-top: 15px;
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    /* Proposal */
-
-    .proposal {
-      padding: 40px 20px;
-    }
-
-    .proposal-text {
-      font-size: 20px;
-      line-height: 1.7;
-      margin-bottom: 25px;
+        height: 160px;
     }
 
     .question {
-      font-size: 32px;
-      font-weight: bold;
-      margin: 25px 0;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      position: relative;
-      min-height: 60px;
-    }
-
-    button.answer {
-      border: none;
-      padding: 15px 35px;
-      border-radius: 50px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    #yesBtn {
-      background: #ff1744;
-      color: white;
-      box-shadow: 0 5px 20px rgba(255,23,68,0.5);
-    }
-
-    #yesBtn:hover {
-      transform: scale(1.12);
-    }
-
-    #noBtn {
-      background: white;
-      color: #e91e63;
-      position: relative;
-    }
-
-    /* Final message */
-
-    #successMessage {
-      display: none;
-      margin-top: 30px;
-      font-size: 24px;
-      font-weight: bold;
-      animation: pop 0.6s ease;
-    }
-
-    @keyframes pop {
-      0% {
-        transform: scale(0);
-      }
-      80% {
-        transform: scale(1.15);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    /* Floating hearts */
-
-    .heart {
-      position: fixed;
-      bottom: -30px;
-      font-size: 25px;
-      pointer-events: none;
-      animation: floatHeart 5s linear forwards;
-      z-index: 999;
-    }
-
-    @keyframes floatHeart {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    footer {
-      margin-top: 20px;
-      font-size: 14px;
-      opacity: 0.85;
-    }
-
-    /* Mobile */
-
-    @media (max-width: 600px) {
-
-      h1 {
-        font-size: 32px;
-      }
-
-      h2 {
-        font-size: 23px;
-      }
-
-      .gallery {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .gallery img {
-        height: 160px;
-      }
-
-      .proposal-text {
-        font-size: 17px;
-      }
-
-      .question {
         font-size: 26px;
-      }
-
-      button.answer {
-        padding: 13px 25px;
-        font-size: 16px;
-      }
     }
-  </style>
+
+    .proposalText {
+        font-size: 17px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
 
-    <!-- TITLE -->
+<!-- =========================
+     WELCOME SCREEN
+========================= -->
 
-    <h1>💕 Our Little Love Story 💕</h1>
+<div id="welcomeScreen">
+
+    <div class="welcomeBox">
+
+        <div class="heartIcon">
+            ❤️
+        </div>
+
+        <h1>Hey You... 💕</h1>
+
+        <p>
+            I made something special just for you.
+            <br>
+            Before you enter, tell me your name ❤️
+        </p>
+
+        <input
+            type="text"
+            id="nameInput"
+            class="inputBox"
+            placeholder="Your Name ❤️"
+        >
+
+        <input
+            type="email"
+            id="emailInput"
+            class="inputBox"
+            placeholder="Your Email 💌"
+        >
+
+        <button
+            class="continueBtn"
+            onclick="enterWebsite()"
+        >
+            Continue ❤️
+        </button>
+
+        <p id="errorMessage">
+            Please enter your name and email ❤️
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN WEBSITE
+========================= -->
+
+<div id="mainWebsite">
+
+<div class="container">
+
+    <h1>
+        💕 Our Little Love Story 💕
+    </h1>
 
     <p class="subtitle">
-      I made this little website just for you ❤️
+        I made this little website just for you ❤️
     </p>
 
 
@@ -258,193 +339,292 @@
 
     <section>
 
-      <h2>📸 Our Memories</h2>
+        <h2>
+            📸 Our Memories
+        </h2>
 
-      <div class="gallery">
+        <div class="gallery">
 
-        <img src="photo1.jpg" alt="Our Memory 1">
+            <img src="photo1.jpg"
+                 alt="Our Memory 1">
 
-        <img src="photo2.jpg" alt="Our Memory 2">
+            <img src="photo2.jpg"
+                 alt="Our Memory 2">
 
-        <img src="photo3.jpg" alt="Our Memory 3">
+            <img src="photo3.jpg"
+                 alt="Our Memory 3">
 
-        <img src="photo4.jpg" alt="Our Memory 4">
+            <img src="photo4.jpg"
+                 alt="Our Memory 4">
 
-      </div>
+        </div>
 
     </section>
 
 
-    <!-- MUSIC -->
+    <!-- SONG -->
 
     <section>
 
-      <h2>🎵 Our Love Song</h2>
+        <h2>
+            🎵 Our Love Song
+        </h2>
 
-      <button class="music-button" id="musicBtn">
-        ▶ Play Our Song
-      </button>
+        <button
+            class="music-button"
+            id="musicBtn"
+            onclick="toggleMusic()"
+        >
+            ▶ Play Our Song
+        </button>
 
-      <p class="song-name">
-        🎶 Our Special Song
-      </p>
+        <p class="song-name">
+            🎶 Our Special Song
+        </p>
 
-      <audio id="loveSong" src="love-song.mp3"></audio>
+        <audio
+            id="loveSong"
+            src="love-song.mp3">
+        </audio>
 
     </section>
 
 
-    <!-- PROPOSAL -->
+    <!-- MESSAGE -->
 
-    <section class="proposal">
+    <section>
 
-      <h2>💌 A Special Message</h2>
+        <h2>
+            💌 A Special Message
+        </h2>
 
-      <p class="proposal-text">
+        <p class="proposalText">
 
-        You came into my life and somehow
-        made everything a little more beautiful. ❤️
+            You came into my life and somehow
+            made everything a little more beautiful. ❤️
 
-        <br><br>
+            <br><br>
 
-        I don't know what the future holds,
-        but I know who I want beside me.
+            I don't know what the future holds,
+            but I know who I want beside me.
 
-        <br><br>
+            <br><br>
 
-        So today, I have just one question
-        to ask you...
+            So today, I have just one question...
 
-      </p>
+        </p>
 
-
-      <div class="question">
-        💍 Will You Be Mine? 💍
-      </div>
-
-
-      <div class="buttons">
-
-        <button class="answer" id="yesBtn">
-          YES ❤️
-        </button>
-
-        <button class="answer" id="noBtn">
-          NO 😜
-        </button>
-
-      </div>
+        <div class="question">
+            💍 Will You Be Mine? 💍
+        </div>
 
 
-      <div id="successMessage">
+        <div class="buttons">
 
-        ❤️ YAAAAAY! ❤️
-        <br><br>
+            <button
+                class="answer"
+                id="yesBtn"
+                onclick="sayYes()">
+                YES ❤️
+            </button>
 
-        You just made me the happiest person! 🥹💕
-        <br>
+            <button
+                class="answer"
+                id="noBtn"
+                onmouseover="moveNo()"
+                ontouchstart="moveNo()">
+                NO 😜
+            </button>
 
-        Forever & Always ❤️
+        </div>
 
-      </div>
+
+        <div id="successMessage">
+
+            ❤️ YAAAAAY! ❤️
+
+            <br><br>
+
+            You just made me the happiest person! 🥹💕
+
+            <br><br>
+
+            Forever & Always ❤️
+
+        </div>
 
     </section>
 
 
     <footer>
-      Made with ❤️ just for you
+        Made with ❤️ just for you
     </footer>
 
-  </div>
+</div>
+
+</div>
 
 
-  <script>
+<script>
 
-    /* =========================
-       MUSIC
-    ========================= */
+/* =========================
+   ENTER WEBSITE
+========================= */
 
-    const musicBtn = document.getElementById("musicBtn");
-    const loveSong = document.getElementById("loveSong");
+function enterWebsite() {
 
-    musicBtn.addEventListener("click", function () {
+    const name =
+        document.getElementById("nameInput").value.trim();
 
-      if (loveSong.paused) {
+    const email =
+        document.getElementById("emailInput").value.trim();
+
+    const error =
+        document.getElementById("errorMessage");
+
+
+    if (name === "" || email === "") {
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    if (!email.includes("@")) {
+
+        error.innerHTML =
+            "Please enter a valid email ❤️";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    error.style.display = "none";
+
+
+    document.getElementById("welcomeScreen")
+        .style.display = "none";
+
+    document.getElementById("mainWebsite")
+        .style.display = "block";
+
+
+    createHearts();
+
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const loveSong =
+    document.getElementById("loveSong");
+
+const musicBtn =
+    document.getElementById("musicBtn");
+
+
+function toggleMusic() {
+
+    if (loveSong.paused) {
 
         loveSong.play();
 
-        musicBtn.innerHTML = "⏸ Pause Our Song";
+        musicBtn.innerHTML =
+            "⏸ Pause Our Song";
 
-      } else {
+    } else {
 
         loveSong.pause();
 
-        musicBtn.innerHTML = "▶ Play Our Song";
+        musicBtn.innerHTML =
+            "▶ Play Our Song";
 
-      }
+    }
 
-    });
-
-
-    /* =========================
-       YES BUTTON
-    ========================= */
-
-    const yesBtn = document.getElementById("yesBtn");
-    const successMessage =
-      document.getElementById("successMessage");
-
-    yesBtn.addEventListener("click", function () {
-
-      successMessage.style.display = "block";
-
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-
-      createHearts();
-
-      // Start music automatically after user interaction
-      loveSong.play().catch(() => {});
-
-    });
+}
 
 
-    /* =========================
-       NO BUTTON
-    ========================= */
+/* =========================
+   YES
+========================= */
 
-    const noBtn = document.getElementById("noBtn");
+function sayYes() {
 
-    noBtn.addEventListener("mouseover", moveNoButton);
+    document.getElementById("successMessage")
+        .style.display = "block";
 
-    noBtn.addEventListener("touchstart", moveNoButton);
+    document.getElementById("yesBtn")
+        .style.display = "none";
 
-    function moveNoButton() {
+    document.getElementById("noBtn")
+        .style.display = "none";
 
-      const maxX = window.innerWidth - 130;
-      const maxY = window.innerHeight - 80;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+    for (let i = 0; i < 60; i++) {
 
-      noBtn.style.position = "fixed";
-      noBtn.style.left = randomX + "px";
-      noBtn.style.top = randomY + "px";
+        setTimeout(() => {
+
+            createHeart();
+
+        }, i * 80);
 
     }
 
 
-    /* =========================
-       FLOATING HEARTS
-    ========================= */
+    loveSong.play().catch(() => {});
 
-    function createHeart() {
+}
 
-      const heart = document.createElement("div");
 
-      heart.classList.add("heart");
+/* =========================
+   NO BUTTON
+========================= */
 
-      const hearts = [
+function moveNo() {
+
+    const button =
+        document.getElementById("noBtn");
+
+    const maxX =
+        window.innerWidth - 130;
+
+    const maxY =
+        window.innerHeight - 80;
+
+
+    const x =
+        Math.random() * maxX;
+
+    const y =
+        Math.random() * maxY;
+
+
+    button.style.position = "fixed";
+
+    button.style.left = x + "px";
+
+    button.style.top = y + "px";
+
+}
+
+
+/* =========================
+   HEARTS
+========================= */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    const heartList = [
         "❤️",
         "💕",
         "💖",
@@ -452,52 +632,54 @@
         "💓",
         "💘",
         "💝"
-      ];
+    ];
 
-      heart.innerHTML =
-        hearts[Math.floor(Math.random() * hearts.length)];
+    heart.innerHTML =
+        heartList[
+            Math.floor(
+                Math.random() * heartList.length
+            )
+        ];
 
-      heart.style.left =
+
+    heart.style.left =
         Math.random() * 100 + "vw";
 
-      heart.style.fontSize =
+    heart.style.fontSize =
         (18 + Math.random() * 25) + "px";
 
-      heart.style.animationDuration =
+    heart.style.animationDuration =
         (3 + Math.random() * 4) + "s";
 
-      document.body.appendChild(heart);
 
-      setTimeout(() => {
+    document.body.appendChild(heart);
+
+
+    setTimeout(() => {
+
         heart.remove();
-      }, 7000);
+
+    }, 7000);
+
+}
+
+
+/* Background hearts */
+
+setInterval(() => {
+
+    if (
+        document.getElementById("mainWebsite")
+        .style.display === "block"
+    ) {
+
+        createHeart();
+
     }
 
+}, 1000);
 
-    function createHearts() {
-
-      for (let i = 0; i < 50; i++) {
-
-        setTimeout(() => {
-          createHeart();
-        }, i * 100);
-
-      }
-
-    }
-
-
-    /* =========================
-       NORMAL HEART BACKGROUND
-    ========================= */
-
-    setInterval(() => {
-
-      createHeart();
-
-    }, 900);
-
-  </script>
+</script>
 
 </body>
 </html>
