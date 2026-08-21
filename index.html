@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Will You Be Mine? ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3, #c471ed);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 850px;
+      margin: auto;
+      padding: 35px 0 60px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    .subtitle {
+      font-size: 17px;
+      margin-bottom: 35px;
+      opacity: 0.95;
+    }
+
+    section {
+      background: rgba(255,255,255,0.16);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 27px;
+    }
+
+    /* Photos */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 3px solid rgba(255,255,255,0.7);
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.04);
+    }
+
+    /* Music */
+
+    .music-button {
+      border: none;
+      background: white;
+      color: #e91e63;
+      padding: 14px 25px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    .music-button:hover {
+      transform: scale(1.05);
+    }
+
+    .song-name {
+      margin-top: 15px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Proposal */
+
+    .proposal {
+      padding: 40px 20px;
+    }
+
+    .proposal-text {
+      font-size: 20px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .question {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 25px 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      min-height: 60px;
+    }
+
+    button.answer {
+      border: none;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #yesBtn {
+      background: #ff1744;
+      color: white;
+      box-shadow: 0 5px 20px rgba(255,23,68,0.5);
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.12);
+    }
+
+    #noBtn {
+      background: white;
+      color: #e91e63;
+      position: relative;
+    }
+
+    /* Final message */
+
+    #successMessage {
+      display: none;
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0);
+      }
+      80% {
+        transform: scale(1.15);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Floating hearts */
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 25px;
+      pointer-events: none;
+      animation: floatHeart 5s linear forwards;
+      z-index: 999;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 23px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery img {
+        height: 160px;
+      }
+
+      .proposal-text {
+        font-size: 17px;
+      }
+
+      .question {
+        font-size: 26px;
+      }
+
+      button.answer {
+        padding: 13px 25px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- TITLE -->
+
+    <h1>💕 Our Little Love Story 💕</h1>
+
+    <p class="subtitle">
+      I made this little website just for you ❤️
+    </p>
+
+
+    <!-- PHOTOS -->
+
+    <section>
+
+      <h2>📸 Our Memories</h2>
+
+      <div class="gallery">
+
+        <img src="photo1.jpg" alt="Our Memory 1">
+
+        <img src="photo2.jpg" alt="Our Memory 2">
+
+        <img src="photo3.jpg" alt="Our Memory 3">
+
+        <img src="photo4.jpg" alt="Our Memory 4">
+
+      </div>
+
+    </section>
+
+
+    <!-- MUSIC -->
+
+    <section>
+
+      <h2>🎵 Our Love Song</h2>
+
+      <button class="music-button" id="musicBtn">
+        ▶ Play Our Song
+      </button>
+
+      <p class="song-name">
+        🎶 Our Special Song
+      </p>
+
+      <audio id="loveSong" src="love-song.mp3"></audio>
+
+    </section>
+
+
+    <!-- PROPOSAL -->
+
+    <section class="proposal">
+
+      <h2>💌 A Special Message</h2>
+
+      <p class="proposal-text">
+
+        You came into my life and somehow
+        made everything a little more beautiful. ❤️
+
+        <br><br>
+
+        I don't know what the future holds,
+        but I know who I want beside me.
+
+        <br><br>
+
+        So today, I have just one question
+        to ask you...
+
+      </p>
+
+
+      <div class="question">
+        💍 Will You Be Mine? 💍
+      </div>
+
+
+      <div class="buttons">
+
+        <button class="answer" id="yesBtn">
+          YES ❤️
+        </button>
+
+        <button class="answer" id="noBtn">
+          NO 😜
+        </button>
+
+      </div>
+
+
+      <div id="successMessage">
+
+        ❤️ YAAAAAY! ❤️
+        <br><br>
+
+        You just made me the happiest person! 🥹💕
+        <br>
+
+        Forever & Always ❤️
+
+      </div>
+
+    </section>
+
+
+    <footer>
+      Made with ❤️ just for you
+    </footer>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       MUSIC
+    ========================= */
+
+    const musicBtn = document.getElementById("musicBtn");
+    const loveSong = document.getElementById("loveSong");
+
+    musicBtn.addEventListener("click", function () {
+
+      if (loveSong.paused) {
+
+        loveSong.play();
+
+        musicBtn.innerHTML = "⏸ Pause Our Song";
+
+      } else {
+
+        loveSong.pause();
+
+        musicBtn.innerHTML = "▶ Play Our Song";
+
+      }
+
+    });
+
+
+    /* =========================
+       YES BUTTON
+    ========================= */
+
+    const yesBtn = document.getElementById("yesBtn");
+    const successMessage =
+      document.getElementById("successMessage");
+
+    yesBtn.addEventListener("click", function () {
+
+      successMessage.style.display = "block";
+
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+
+      createHearts();
+
+      // Start music automatically after user interaction
+      loveSong.play().catch(() => {});
+
+    });
+
+
+    /* =========================
+       NO BUTTON
+    ========================= */
+
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    function moveNoButton() {
+
+      const maxX = window.innerWidth - 130;
+      const maxY = window.innerHeight - 80;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.position = "fixed";
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+
+    }
+
+
+    /* =========================
+       FLOATING HEARTS
+    ========================= */
+
+    function createHeart() {
+
+      const heart = document.createElement("div");
+
+      heart.classList.add("heart");
+
+      const hearts = [
+        "❤️",
+        "💕",
+        "💖",
+        "💗",
+        "💓",
+        "💘",
+        "💝"
+      ];
+
+      heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.fontSize =
+        (18 + Math.random() * 25) + "px";
+
+      heart.style.animationDuration =
+        (3 + Math.random() * 4) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+
+    function createHearts() {
+
+      for (let i = 0; i < 50; i++) {
+
+        setTimeout(() => {
+          createHeart();
+        }, i * 100);
+
+      }
+
+    }
+
+
+    /* =========================
+       NORMAL HEART BACKGROUND
+    ========================= */
+
+    setInterval(() => {
+
+      createHeart();
+
+    }, 900);
+
+  </script>
+
+</body>
+</html>
