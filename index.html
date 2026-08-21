@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Just For You ❤️</title>
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
@@ -17,23 +15,22 @@
 
 body {
     font-family: Georgia, "Times New Roman", serif;
-    background:
-        radial-gradient(circle at top, #ffb6c9, transparent 35%),
-        linear-gradient(135deg, #ff416c, #ff4b2b);
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at top, #ffc1d6, transparent 35%),
+        linear-gradient(135deg, #ff416c, #ff4b2b);
 }
 
-/* =========================
-   WELCOME SCREEN
-========================= */
+/* WELCOME */
 
 #welcomeScreen {
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
@@ -49,8 +46,7 @@ body {
     border: 1px solid rgba(255,255,255,0.3);
     border-radius: 30px;
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 
 .bigHeart {
@@ -59,8 +55,7 @@ body {
 }
 
 @keyframes heartbeat {
-
-    0%, 100% {
+    0%,100% {
         transform: scale(1);
     }
 
@@ -87,19 +82,17 @@ body {
 
     border: none;
     outline: none;
-
     border-radius: 30px;
 
     font-size: 16px;
     text-align: center;
 
-    background: rgba(255,255,255,0.95);
+    background: white;
     color: #333;
 }
 
 .continueBtn {
     margin-top: 15px;
-
     padding: 15px 35px;
 
     border: none;
@@ -114,12 +107,6 @@ body {
     cursor: pointer;
 
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-
-    transition: 0.3s;
-}
-
-.continueBtn:hover {
-    transform: scale(1.06);
 }
 
 #errorMessage {
@@ -130,9 +117,7 @@ body {
 }
 
 
-/* =========================
-   MAIN WEBSITE
-========================= */
+/* MAIN */
 
 #mainWebsite {
     display: none;
@@ -141,20 +126,14 @@ body {
 .container {
     width: 92%;
     max-width: 850px;
-
     margin: auto;
-
     padding: 35px 0 60px;
-
     text-align: center;
 }
 
 .mainTitle {
     font-size: 42px;
     margin-bottom: 10px;
-
-    text-shadow:
-        0 4px 15px rgba(0,0,0,0.25);
 }
 
 .subtitle {
@@ -164,19 +143,15 @@ body {
 
 section {
     margin-bottom: 25px;
-
     padding: 25px;
 
     background: rgba(255,255,255,0.16);
-
     backdrop-filter: blur(15px);
 
     border: 1px solid rgba(255,255,255,0.25);
-
     border-radius: 28px;
 
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.18);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
 }
 
 section h2 {
@@ -185,16 +160,11 @@ section h2 {
 }
 
 
-/* =========================
-   PHOTOS
-========================= */
+/* PHOTOS */
 
 .gallery {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
 }
 
@@ -205,964 +175,4 @@ section h2 {
     object-fit: cover;
 
     border-radius: 20px;
-
-    border: 3px solid rgba(255,255,255,0.9);
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.2);
-
-    transition: 0.4s;
-}
-
-.gallery img:hover {
-    transform: scale(1.03);
-}
-
-
-/* =========================
-   SONG
-========================= */
-
-.musicButton {
-    border: none;
-
-    padding: 15px 30px;
-
-    border-radius: 50px;
-
-    background: white;
-    color: #e91e63;
-
-    font-size: 17px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 7px 20px rgba(0,0,0,0.2);
-
-    transition: 0.3s;
-}
-
-.musicButton:hover {
-    transform: scale(1.05);
-}
-
-.songText {
-    margin-top: 15px;
-    font-size: 16px;
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
-
-.proposalText {
-    font-size: 19px;
-    line-height: 1.9;
-}
-
-.question {
-    margin: 25px 0;
-
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.buttons {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 18px;
-
-    flex-wrap: wrap;
-}
-
-.answerButton {
-    border: none;
-
-    padding: 15px 35px;
-
-    border-radius: 50px;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-
-    min-width: 130px;
-}
-
-#yesBtn {
-    background: #ff1744;
-    color: white;
-
-    box-shadow:
-        0 8px 20px rgba(255,23,68,0.4);
-}
-
-#noBtn {
-    background: white;
-    color: #e91e63;
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.2);
-}
-
-.answerButton:hover {
-    transform: scale(1.08);
-}
-
-#successMessage {
-    display: none;
-
-    margin-top: 30px;
-
-    padding: 25px;
-
-    border-radius: 25px;
-
-    background: rgba(255,255,255,0.2);
-
-    font-size: 23px;
-
-    line-height: 1.7;
-}
-
-#sendingMessage {
-    display: none;
-
-    margin-top: 15px;
-
-    font-size: 15px;
-}
-
-#emailStatus {
-    margin-top: 10px;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    margin-top: 25px;
-
-    font-size: 14px;
-
-    opacity: 0.85;
-}
-
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-.heart {
-    position: fixed;
-
-    bottom: -40px;
-
-    pointer-events: none;
-
-    z-index: 9999;
-
-    animation:
-        floatHeart linear forwards;
-}
-
-@keyframes floatHeart {
-
-    0% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-
-        opacity: 1;
-    }
-
-    100% {
-        transform:
-            translateY(-110vh)
-            rotate(360deg);
-
-        opacity: 0;
-    }
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    .mainTitle {
-        font-size: 31px;
-    }
-
-    .welcomeBox h1 {
-        font-size: 30px;
-    }
-
-    section {
-        padding: 20px;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery img {
-        height: 240px;
-    }
-
-    .question {
-        font-size: 26px;
-    }
-
-    .proposalText {
-        font-size: 17px;
-    }
-
-    .answerButton {
-        width: 100%;
-    }
-}
-
-</style>
-</head>
-
-
-<body>
-
-
-<!-- =====================================================
-     WELCOME SCREEN
-===================================================== -->
-
-<div id="welcomeScreen">
-
-    <div class="welcomeBox">
-
-        <div class="bigHeart">
-            ❤️
-        </div>
-
-        <h1>
-            Hey You... 💕
-        </h1>
-
-        <p>
-            I made something special just for you.
-            <br>
-            Enter your details to continue ❤️
-        </p>
-
-
-        <input
-            type="text"
-            id="nameInput"
-            class="inputBox"
-            placeholder="Your Name ❤️"
-            autocomplete="name"
-        >
-
-
-        <input
-            type="email"
-            id="emailInput"
-            class="inputBox"
-            placeholder="Your Email 💌"
-            autocomplete="email"
-        >
-
-
-        <button
-            class="continueBtn"
-            onclick="enterWebsite()"
-        >
-            Continue ❤️
-        </button>
-
-
-        <p id="errorMessage">
-            Please enter your name and email ❤️
-        </p>
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     MAIN WEBSITE
-===================================================== -->
-
-<div id="mainWebsite">
-
-    <div class="container">
-
-
-        <h1 class="mainTitle">
-            💕 Our Little Love Story 💕
-        </h1>
-
-
-        <p class="subtitle">
-            A little surprise made just for you ❤️
-        </p>
-
-
-        <!-- =========================
-             PHOTOS
-        ========================= -->
-
-        <section>
-
-            <h2>
-                📸 Our Memories
-            </h2>
-
-
-            <div class="gallery">
-
-                <img
-                    src="photo1.jpg"
-                    alt="Our Memory 1"
-                    loading="lazy"
-                >
-
-                <img
-                    src="photo2.jpg"
-                    alt="Our Memory 2"
-                    loading="lazy"
-                >
-
-                <img
-                    src="photo3.jpg"
-                    alt="Our Memory 3"
-                    loading="lazy"
-                >
-
-                <img
-                    src="photo4.jpg"
-                    alt="Our Memory 4"
-                    loading="lazy"
-                >
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             SONG
-        ========================= -->
-
-        <section>
-
-            <h2>
-                🎵 Our Love Song
-            </h2>
-
-
-            <button
-                class="musicButton"
-                id="musicBtn"
-                onclick="toggleMusic()"
-            >
-                ▶ Play Our Song
-            </button>
-
-
-            <p class="songText">
-                🎶 A special song for a special person ❤️
-            </p>
-
-
-            <audio
-                id="loveSong"
-                src="love-song.mp3"
-                preload="metadata">
-            </audio>
-
-        </section>
-
-
-
-        <!-- =========================
-             LOVE MESSAGE
-        ========================= -->
-
-        <section>
-
-            <h2>
-                💌 A Special Message
-            </h2>
-
-
-            <p class="proposalText">
-
-                You came into my life and somehow
-                made everything a little more beautiful. ❤️
-
-                <br><br>
-
-                Every moment with you is something
-                I want to remember.
-
-                <br><br>
-
-                I don't know what the future holds,
-                but I know who I want beside me.
-
-                <br><br>
-
-                So today...
-
-            </p>
-
-
-            <div class="question">
-                💍 Will You Be Mine? 💍
-            </div>
-
-
-            <div class="buttons">
-
-                <button
-                    class="answerButton"
-                    id="yesBtn"
-                    onclick="sayYes()">
-                    YES ❤️
-                </button>
-
-
-                <button
-                    class="answerButton"
-                    id="noBtn"
-                    onclick="sayNo()">
-                    NO 😜
-                </button>
-
-            </div>
-
-
-            <div id="sendingMessage">
-                Sending your answer... 💌
-            </div>
-
-
-            <div id="emailStatus"></div>
-
-
-            <div id="successMessage">
-            </div>
-
-        </section>
-
-
-        <footer>
-            Made with ❤️ just for you
-        </footer>
-
-    </div>
-
-</div>
-
-
-
-<script>
-
-/* =====================================================
-   IMPORTANT
-===================================================== */
-
-/*
-   👇 CHANGE THIS TO YOUR OWN EMAIL ADDRESS
-*/
-
-const RESULT_EMAIL = "malai8220.g@gmail.com";
-
-
-/* =====================================================
-   ENTER WEBSITE
-===================================================== */
-
-function enterWebsite() {
-
-    const name =
-        document
-        .getElementById("nameInput")
-        .value
-        .trim();
-
-
-    const email =
-        document
-        .getElementById("emailInput")
-        .value
-        .trim();
-
-
-    const error =
-        document
-        .getElementById("errorMessage");
-
-
-    if (name === "") {
-
-        error.innerHTML =
-            "Please enter your name ❤️";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (email === "") {
-
-        error.innerHTML =
-            "Please enter your email 💌";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (!email.includes("@") ||
-        !email.includes(".")) {
-
-        error.innerHTML =
-            "Please enter a valid email 💌";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    error.style.display = "none";
-
-
-    document
-        .getElementById("welcomeScreen")
-        .style.display = "none";
-
-
-    document
-        .getElementById("mainWebsite")
-        .style.display = "block";
-
-
-    startHearts();
-
-}
-
-
-
-/* =====================================================
-   MUSIC
-===================================================== */
-
-const loveSong =
-    document.getElementById("loveSong");
-
-
-const musicBtn =
-    document.getElementById("musicBtn");
-
-
-function toggleMusic() {
-
-    if (loveSong.paused) {
-
-        loveSong
-            .play()
-            .then(() => {
-
-                musicBtn.innerHTML =
-                    "⏸ Pause Our Song";
-
-            })
-            .catch(() => {
-
-                alert(
-                    "Tap the play button again to start the song 🎵"
-                );
-
-            });
-
-    } else {
-
-        loveSong.pause();
-
-        musicBtn.innerHTML =
-            "▶ Play Our Song";
-
-    }
-
-}
-
-
-/* =====================================================
-   YES BUTTON
-===================================================== */
-
-async function sayYes() {
-
-    const name =
-        document
-        .getElementById("nameInput")
-        .value
-        .trim();
-
-
-    const email =
-        document
-        .getElementById("emailInput")
-        .value
-        .trim();
-
-
-    showAnswer(
-        "❤️ YAAAAAY! ❤️",
-        "You just made me the happiest person! 🥹💕" +
-        "<br><br>" +
-        "Forever & Always ❤️"
-    );
-
-
-    for (let i = 0; i < 70; i++) {
-
-        setTimeout(() => {
-
-            createHeart();
-
-        }, i * 60);
-
-    }
-
-
-    loveSong
-        .play()
-        .catch(() => {});
-
-
-    await sendResult(
-        name,
-        email,
-        "YES ❤️"
-    );
-
-}
-
-
-
-/* =====================================================
-   NO BUTTON
-===================================================== */
-
-async function sayNo() {
-
-    const name =
-        document
-        .getElementById("nameInput")
-        .value
-        .trim();
-
-
-    const email =
-        document
-        .getElementById("emailInput")
-        .value
-        .trim();
-
-
-    showAnswer(
-        "😜 Awww... NO?",
-        "Okay... I'll respect your answer ❤️" +
-        "<br><br>" +
-        "But this little website will always have a place for you. 💕"
-    );
-
-
-    for (let i = 0; i < 25; i++) {
-
-        setTimeout(() => {
-
-            createHeart();
-
-        }, i * 80);
-
-    }
-
-
-    await sendResult(
-        name,
-        email,
-        "NO 😜"
-    );
-
-}
-
-
-
-/* =====================================================
-   SHOW ANSWER
-===================================================== */
-
-function showAnswer(title, message) {
-
-    document
-        .getElementById("yesBtn")
-        .style.display = "none";
-
-
-    document
-        .getElementById("noBtn")
-        .style.display = "none";
-
-
-    const success =
-        document.getElementById(
-            "successMessage"
-        );
-
-
-    success.innerHTML =
-        "<strong>" +
-        title +
-        "</strong>" +
-        "<br><br>" +
-        message;
-
-
-    success.style.display =
-        "block";
-
-}
-
-
-
-/* =====================================================
-   SEND RESULT TO EMAIL
-===================================================== */
-
-async function sendResult(
-    name,
-    email,
-    answer
-) {
-
-    const sending =
-        document.getElementById(
-            "sendingMessage"
-        );
-
-
-    const status =
-        document.getElementById(
-            "emailStatus"
-        );
-
-
-    sending.style.display =
-        "block";
-
-
-    status.innerHTML = "";
-
-
-    try {
-
-        const response =
-            await fetch(
-                "https://formsubmit.co/ajax/" +
-                RESULT_EMAIL,
-                {
-
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/x-www-form-urlencoded",
-                        "Accept":
-                            "application/json"
-                    },
-
-                    body:
-                        new URLSearchParams({
-
-                            name: name,
-
-                            email: email,
-
-                            answer: answer,
-
-                            message:
-                                "💌 Love Proposal Response\n\n" +
-                                "Name: " +
-                                name +
-                                "\n\n" +
-                                "Email: " +
-                                email +
-                                "\n\n" +
-                                "Answer: " +
-                                answer,
-
-                            _subject:
-                                "💌 Love Proposal Response - " +
-                                answer,
-
-                            _template:
-                                "table"
-
-                        })
-
-                }
-            );
-
-
-        if (response.ok) {
-
-            status.innerHTML =
-                "❤️ Your answer has been sent.";
-
-        } else {
-
-            status.innerHTML =
-                "Your answer was recorded on screen, but email sending failed.";
-
-        }
-
-
-    } catch (error) {
-
-        console.log(
-            "Email error:",
-            error
-        );
-
-
-        status.innerHTML =
-            "❤️ Thank you for your answer.";
-
-    }
-
-
-    sending.style.display =
-        "none";
-
-}
-
-
-
-/* =====================================================
-   CREATE HEART
-===================================================== */
-
-function createHeart() {
-
-    const heart =
-        document.createElement(
-            "div"
-        );
-
-
-    heart.className =
-        "heart";
-
-
-    const hearts = [
-        "❤️",
-        "💕",
-        "💖",
-        "💗",
-        "💓",
-        "💘",
-        "💝",
-        "🥰"
-    ];
-
-
-    heart.innerHTML =
-        hearts[
-            Math.floor(
-                Math.random() *
-                hearts.length
-            )
-        ];
-
-
-    heart.style.left =
-        Math.random() * 100 +
-        "vw";
-
-
-    heart.style.fontSize =
-        (18 +
-        Math.random() * 25) +
-        "px";
-
-
-    heart.style.animationDuration =
-        (3 +
-        Math.random() * 4) +
-        "s";
-
-
-    document.body.appendChild(
-        heart
-    );
-
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    }, 8000);
-
-}
-
-
-
-/* =====================================================
-   BACKGROUND HEARTS
-===================================================== */
-
-function startHearts() {
-
-    setInterval(() => {
-
-        if (
-            document
-            .getElementById("mainWebsite")
-            .style.display === "block"
-        ) {
-
-            createHeart();
-
-        }
-
-    }, 1200);
-
-}
-
-</script>
-
-</body>
-</html>
+    border: 3
