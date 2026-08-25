@@ -1,1017 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Just For You ❤️</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <title>Our Love Story ❤️</title>
 
-body {
-    font-family: Georgia, "Times New Roman", serif;
-    color: white;
-    min-height: 100vh;
-    overflow-x: hidden;
-
-    background:
-        radial-gradient(circle at top, #ffc1d6, transparent 35%),
-        linear-gradient(135deg, #ff416c, #ff4b2b);
-}
-
-/* WELCOME */
-
-#welcomeScreen {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.welcomeBox {
-    width: 100%;
-    max-width: 430px;
-    padding: 35px 25px;
-    text-align: center;
-
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 30px;
-
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-}
-
-.bigHeart {
-    font-size: 70px;
-    animation: heartbeat 1.3s infinite;
-}
-
-@keyframes heartbeat {
-    0%,100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.18);
-    }
-}
-
-.welcomeBox h1 {
-    font-size: 34px;
-    margin: 15px 0;
-}
-
-.welcomeBox p {
-    font-size: 17px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.inputBox {
-    width: 100%;
-    padding: 15px 20px;
-    margin: 8px 0;
-
-    border: none;
-    outline: none;
-    border-radius: 30px;
-
-    font-size: 16px;
-    text-align: center;
-
-    background: white;
-    color: #333;
-}
-
-.continueBtn {
-    margin-top: 15px;
-    padding: 15px 35px;
-
-    border: none;
-    border-radius: 50px;
-
-    background: #ff1744;
-    color: white;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
-
-#errorMessage {
-    display: none;
-    color: white;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-
-/* MAIN */
-
-#mainWebsite {
-    display: none;
-}
-
-.container {
-    width: 92%;
-    max-width: 850px;
-    margin: auto;
-    padding: 35px 0 60px;
-    text-align: center;
-}
-
-.mainTitle {
-    font-size: 42px;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 18px;
-    margin-bottom: 30px;
-}
-
-section {
-    margin-bottom: 25px;
-    padding: 25px;
-
-    background: rgba(255,255,255,0.16);
-    backdrop-filter: blur(15px);
-
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 28px;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
-}
-
-section h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-
-/* PHOTOS */
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.gallery img {
-    width: 100%;
-    height: 230px;
-
-    object-fit: cover;
-
-    border-radius: 20px;
-    border: 3px solid white;
-
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-
-
-/* SONG */
-
-.musicButton {
-    border: none;
-
-    padding: 15px 30px;
-    border-radius: 50px;
-
-    background: white;
-    color: #e91e63;
-
-    font-size: 17px;
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.songText {
-    margin-top: 15px;
-}
-
-
-/* PROPOSAL */
-
-.proposalText {
-    font-size: 19px;
-    line-height: 1.9;
-}
-
-.question {
-    margin: 25px 0;
-
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-.answerButton {
-    display: inline-block;
-
-    border: none;
-
-    padding: 15px 35px;
-
-    border-radius: 50px;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    min-width: 130px;
-}
-
-#yesBtn {
-    background: #ff1744;
-    color: white;
-
-    box-shadow: 0 8px 20px rgba(255,23,68,0.4);
-}
-
-#noBtn {
-    background: white;
-    color: #e91e63;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.answerButton:hover {
-    transform: scale(1.06);
-}
-
-#successMessage {
-    display: none;
-
-    margin-top: 30px;
-    padding: 25px;
-
-    border-radius: 25px;
-
-    background: rgba(255,255,255,0.2);
-
-    font-size: 23px;
-    line-height: 1.7;
-}
-
-#sendingMessage {
-    display: none;
-    margin-top: 15px;
-    font-size: 15px;
-}
-
-#emailStatus {
-    margin-top: 12px;
-    font-size: 14px;
-}
-
-
-/* HEARTS */
-
-.heart {
-    position: fixed;
-    bottom: -40px;
-
-    pointer-events: none;
-    z-index: 9999;
-
-    animation: floatHeart linear forwards;
-}
-
-@keyframes floatHeart {
-
-    0% {
-        transform:
-            translateY(0)
-            rotate(0deg);
-
-        opacity: 1;
-    }
-
-    100% {
-        transform:
-            translateY(-110vh)
-            rotate(360deg);
-
-        opacity: 0;
-    }
-}
-
-
-/* FOOTER */
-
-footer {
-    margin-top: 25px;
-    font-size: 14px;
-    opacity: 0.85;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .mainTitle {
-        font-size: 31px;
-    }
-
-    .welcomeBox h1 {
-        font-size: 30px;
-    }
-
-    section {
-        padding: 20px;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery img {
-        height: 240px;
-    }
-
-    .question {
-        font-size: 26px;
-    }
-
-    .proposalText {
-        font-size: 17px;
-    }
-
-    .answerButton {
-        width: 100%;
-    }
-}
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- Floating Hearts -->
+<div id="hearts"></div>
 
-<!-- =========================
-     WELCOME
-========================= -->
+<!-- Music -->
+<audio id="loveSong" loop>
+    <source src="music/love-song.mp3" type="audio/mpeg">
+</audio>
 
-<div id="welcomeScreen">
+<!-- Start Screen -->
+<section id="startScreen" class="screen active">
 
-    <div class="welcomeBox">
+    <div class="glass">
 
-        <div class="bigHeart">
-            ❤️
-        </div>
+        <div class="big-heart">❤️</div>
 
-        <h1>
-            Hey You... 💕
-        </h1>
+        <h1>Our Little Love Story</h1>
 
         <p>
-            I made something special just for you.
-            <br>
-            Enter your details to continue ❤️
+            I have something special<br>
+            waiting for you...
         </p>
 
-        <input
-            type="text"
-            id="nameInput"
-            class="inputBox"
-            placeholder="Your Name ❤️"
-        >
-
-        <input
-            type="email"
-            id="emailInput"
-            class="inputBox"
-            placeholder="Your Email 💌"
-        >
-
-        <button
-            class="continueBtn"
-            onclick="enterWebsite()"
-        >
-            Continue ❤️
+        <button id="startBtn">
+            Open My Heart 💕
         </button>
 
-        <p id="errorMessage">
-            Please enter your details ❤️
+    </div>
+
+</section>
+
+
+<!-- Scratch Section -->
+<section id="scratchScreen" class="screen">
+
+    <h1>Scratch Our Memories ❤️</h1>
+
+    <p id="progressText">
+        Memory 1 of 9
+    </p>
+
+    <div id="scratchContainer"></div>
+
+</section>
+
+
+<!-- Poem -->
+<section id="poemScreen" class="screen">
+
+    <div class="glass poemBox">
+
+        <div class="heart-animation">💗</div>
+
+        <h1>For You...</h1>
+
+        <p class="poem">
+
+            Unnodu pesum ovvoru nodiyum,<br>
+            En manadhil oru azhagana kavidhai... ❤️<br><br>
+
+            Un sirippil en santhosham,<br>
+            Un paarvaiyil en ulagam,<br>
+            Un kooda irukkum ovvoru naalum<br>
+            Enakku oru pudhiya thodakkam... 💕<br><br>
+
+            Indha vaazhkai muzhuvadhum,<br>
+            Un kaiya pidichu nadakka aasai...<br><br>
+
+            Ennodu indha payanathai<br>
+            Nee thodara virumbugiraaya? 💍
+
         </p>
+
+        <button id="proposalBtn">
+            One Last Question ❤️
+        </button>
 
     </div>
 
-</div>
+</section>
 
 
-<!-- =========================
-     MAIN WEBSITE
-========================= -->
+<!-- Proposal -->
+<section id="proposalScreen" class="screen">
 
-<div id="mainWebsite">
+    <div class="glass proposalBox">
 
-    <div class="container">
+        <div class="ring">💍</div>
 
-        <h1 class="mainTitle">
-            💕 Our Little Love Story 💕
-        </h1>
+        <h1>Will You Marry Me?</h1>
 
-        <p class="subtitle">
-            A little surprise made just for you ❤️
+        <p>
+            I don't want a perfect life...<br>
+            I just want a life with you. ❤️
         </p>
 
+        <div class="buttons">
 
-        <!-- PHOTOS -->
-
-        <section>
-
-            <h2>
-                📸 Our Memories
-            </h2>
-
-            <div class="gallery">
-
-                <img src="photo1.jpg" alt="Memory 1">
-
-                <img src="photo2.jpg" alt="Memory 2">
-
-                <img src="photo3.jpg" alt="Memory 3">
-
-                <img src="photo4.jpg" alt="Memory 4">
-
-            </div>
-
-        </section>
-
-
-        <!-- SONG -->
-
-        <section>
-
-            <h2>
-                🎵 Our Love Song
-            </h2>
-
-            <button
-                class="musicButton"
-                id="musicBtn"
-                onclick="toggleMusic()"
-            >
-                ▶ Play Our Song
+            <button id="yesBtn">
+                YES ❤️
             </button>
 
-            <p class="songText">
-                🎶 A special song for a special person ❤️
-            </p>
+            <button id="noBtn">
+                NO 😢
+            </button>
 
-            <audio
-                id="loveSong"
-                src="love-song.mp3">
-            </audio>
-
-        </section>
-
-
-        <!-- PROPOSAL -->
-
-        <section>
-
-            <h2>
-                💌 A Special Message
-            </h2>
-
-            <p class="proposalText">
-
-                You came into my life and somehow
-                made everything a little more beautiful. ❤️
-
-                <br><br>
-
-                Every moment with you is something
-                I want to remember.
-
-                <br><br>
-
-                I don't know what the future holds,
-                but I know who I want beside me.
-
-                <br><br>
-
-                So today...
-
-            </p>
-
-
-            <div class="question">
-                💍 Will You Be Mine? 💍
-            </div>
-
-
-            <div class="buttons">
-
-                <button
-                    class="answerButton"
-                    id="yesBtn"
-                    onclick="sayYes()"
-                >
-                    YES ❤️
-                </button>
-
-                <button
-                    class="answerButton"
-                    id="noBtn"
-                    onclick="sayNo()"
-                >
-                    NO 😜
-                </button>
-
-            </div>
-
-
-            <div id="sendingMessage">
-                Sending response... 💌
-            </div>
-
-
-            <div id="emailStatus">
-            </div>
-
-
-            <div id="successMessage">
-            </div>
-
-        </section>
-
-
-        <footer>
-            Made with ❤️ just for you
-        </footer>
+        </div>
 
     </div>
 
-</div>
+</section>
 
 
-<script>
+<!-- Final Result -->
+<section id="resultScreen" class="screen">
 
-/* =====================================================
-   CHANGE ONLY THIS EMAIL
-===================================================== */
+    <div class="glass">
 
-const RESULT_EMAIL = "malai8220.g@gmail.com";
+        <div id="resultEmoji"></div>
 
+        <h1 id="resultTitle"></h1>
 
-/* =====================================================
-   ENTER WEBSITE
-===================================================== */
+        <p id="resultMessage"></p>
 
-function enterWebsite() {
+    </div>
 
-    const name =
-        document.getElementById("nameInput")
-        .value.trim();
+</section>
 
-    const email =
-        document.getElementById("emailInput")
-        .value.trim();
 
-    const error =
-        document.getElementById("errorMessage");
-
-
-    if (name === "") {
-
-        error.innerHTML =
-            "Please enter your name ❤️";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (email === "") {
-
-        error.innerHTML =
-            "Please enter your email 💌";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    if (!email.includes("@")) {
-
-        error.innerHTML =
-            "Please enter a valid email 💌";
-
-        error.style.display = "block";
-
-        return;
-    }
-
-
-    error.style.display = "none";
-
-
-    document.getElementById("welcomeScreen")
-        .style.display = "none";
-
-
-    document.getElementById("mainWebsite")
-        .style.display = "block";
-
-
-    startHearts();
-}
-
-
-/* =====================================================
-   MUSIC
-===================================================== */
-
-const loveSong =
-    document.getElementById("loveSong");
-
-const musicBtn =
-    document.getElementById("musicBtn");
-
-
-function toggleMusic() {
-
-    if (loveSong.paused) {
-
-        loveSong.play()
-        .then(() => {
-
-            musicBtn.innerHTML =
-                "⏸ Pause Our Song";
-
-        })
-        .catch(() => {
-
-            alert(
-                "Tap Play Our Song again 🎵"
-            );
-
-        });
-
-    } else {
-
-        loveSong.pause();
-
-        musicBtn.innerHTML =
-            "▶ Play Our Song";
-    }
-}
-
-
-/* =====================================================
-   YES
-===================================================== */
-
-async function sayYes() {
-
-    const name =
-        document.getElementById("nameInput")
-        .value.trim();
-
-    const email =
-        document.getElementById("emailInput")
-        .value.trim();
-
-
-    showAnswer(
-        "❤️ YAAAAAY! ❤️",
-        "You just made me the happiest person! 🥹💕" +
-        "<br><br>" +
-        "Forever & Always ❤️"
-    );
-
-
-    for (let i = 0; i < 70; i++) {
-
-        setTimeout(() => {
-            createHeart();
-        }, i * 60);
-
-    }
-
-
-    loveSong.play().catch(() => {});
-
-
-    await sendResult(
-        name,
-        email,
-        "YES ❤️"
-    );
-}
-
-
-/* =====================================================
-   NO
-===================================================== */
-
-async function sayNo() {
-
-    const name =
-        document.getElementById("nameInput")
-        .value.trim();
-
-    const email =
-        document.getElementById("emailInput")
-        .value.trim();
-
-
-    showAnswer(
-        "😜 Awww... NO?",
-        "Okay... I'll respect your answer ❤️" +
-        "<br><br>" +
-        "Thank you for answering. 💕"
-    );
-
-
-    for (let i = 0; i < 25; i++) {
-
-        setTimeout(() => {
-            createHeart();
-        }, i * 80);
-
-    }
-
-
-    await sendResult(
-        name,
-        email,
-        "NO 😜"
-    );
-}
-
-
-/* =====================================================
-   SHOW ANSWER
-===================================================== */
-
-function showAnswer(title, message) {
-
-    document.getElementById("yesBtn")
-        .style.display = "none";
-
-    document.getElementById("noBtn")
-        .style.display = "none";
-
-
-    const success =
-        document.getElementById(
-            "successMessage"
-        );
-
-
-    success.innerHTML =
-        "<strong>" +
-        title +
-        "</strong>" +
-        "<br><br>" +
-        message;
-
-
-    success.style.display = "block";
-}
-
-
-/* =====================================================
-   SEND RESULT
-===================================================== */
-
-async function sendResult(
-    name,
-    email,
-    answer
-) {
-
-    const sending =
-        document.getElementById(
-            "sendingMessage"
-        );
-
-    const status =
-        document.getElementById(
-            "emailStatus"
-        );
-
-
-    sending.style.display = "block";
-
-    status.innerHTML = "";
-
-
-    try {
-
-        const formData =
-            new FormData();
-
-
-        formData.append(
-            "name",
-            name
-        );
-
-
-        formData.append(
-            "email",
-            email
-        );
-
-
-        formData.append(
-            "answer",
-            answer
-        );
-
-
-        formData.append(
-            "message",
-
-            "💌 LOVE PROPOSAL RESPONSE\n\n" +
-
-            "Name: " +
-            name +
-
-            "\n\nEmail: " +
-            email +
-
-            "\n\nAnswer: " +
-            answer
-        );
-
-
-        formData.append(
-            "_subject",
-            "💌 Love Proposal Response - " +
-            answer
-        );
-
-
-        formData.append(
-            "_template",
-            "table"
-        );
-
-
-        formData.append(
-            "_captcha",
-            "false"
-        );
-
-
-        const response =
-            await fetch(
-                "https://formsubmit.co/" +
-                RESULT_EMAIL,
-
-                {
-                    method: "POST",
-
-                    body: formData,
-
-                    headers: {
-                        "Accept":
-                            "application/json"
-                    }
-                }
-            );
-
-
-        if (response.ok) {
-
-            status.innerHTML =
-                "❤️ Response sent successfully!";
-
-        } else {
-
-            status.innerHTML =
-                "❌ Email could not be sent.";
-
-            console.log(
-                "FormSubmit status:",
-                response.status
-            );
-        }
-
-
-    } catch (error) {
-
-        console.log(
-            "Email error:",
-            error
-        );
-
-
-        status.innerHTML =
-            "❌ Please try again.";
-    }
-
-
-    sending.style.display = "none";
-}
-
-
-/* =====================================================
-   HEART
-===================================================== */
-
-function createHeart() {
-
-    const heart =
-        document.createElement("div");
-
-
-    heart.className = "heart";
-
-
-    const heartList = [
-        "❤️",
-        "💕",
-        "💖",
-        "💗",
-        "💓",
-        "💘",
-        "💝",
-        "🥰"
-    ];
-
-
-    heart.innerHTML =
-        heartList[
-            Math.floor(
-                Math.random() *
-                heartList.length
-            )
-        ];
-
-
-    heart.style.left =
-        Math.random() * 100 + "vw";
-
-
-    heart.style.fontSize =
-        (18 + Math.random() * 25) +
-        "px";
-
-
-    heart.style.animationDuration =
-        (3 + Math.random() * 4) +
-        "s";
-
-
-    document.body.appendChild(heart);
-
-
-    setTimeout(() => {
-        heart.remove();
-    }, 8000);
-}
-
-
-/* =====================================================
-   BACKGROUND HEARTS
-===================================================== */
-
-function startHearts() {
-
-    setInterval(() => {
-
-        if (
-            document
-            .getElementById("mainWebsite")
-            .style.display === "block"
-        ) {
-
-            createHeart();
-        }
-
-    }, 1200);
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
