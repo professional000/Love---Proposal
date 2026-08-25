@@ -1,177 +1,15 @@
 /* =====================================================
-   LOVE PROPOSAL WEBSITE
-   Formspree:
-   https://formspree.io/f/xzepljrz
-===================================================== */
+   OUR LITTLE LOVE STORY
+   ===================================================== */
 
 
-/* ================= SCREEN ELEMENTS ================= */
+/* ================= CONFIG ================= */
 
-const startScreen =
-    document.getElementById("startScreen");
+const FORM_ENDPOINT =
+    "https://formspree.io/f/xzepljrz";
 
-const scratchScreen =
-    document.getElementById("scratchScreen");
 
-const poemScreen =
-    document.getElementById("poemScreen");
-
-const proposalScreen =
-    document.getElementById("proposalScreen");
-
-const resultScreen =
-    document.getElementById("resultScreen");
-
-
-/* ================= MUSIC ================= */
-
-const loveSong =
-    document.getElementById("loveSong");
-
-const startBtn =
-    document.getElementById("startBtn");
-
-
-/* ================= START ================= */
-
-startBtn.addEventListener("click", async () => {
-
-    /*
-       Browser autoplay restriction:
-       Music starts after user taps the button.
-    */
-
-    try {
-
-        loveSong.volume = 0.65;
-
-        await loveSong.play();
-
-    } catch (error) {
-
-        console.log(
-            "Music could not autoplay:",
-            error
-        );
-    }
-
-
-    startScreen.classList.remove("active");
-
-    scratchScreen.classList.add("active");
-
-
-    currentPhoto = 0;
-
-    createScratchCard();
-
-});
-
-
-
-/* =====================================================
-   FLOATING LOVE EMOJIS
-===================================================== */
-
-const heartContainer =
-    document.getElementById("heartContainer");
-
-
-const loveEmojis = [
-
-    "❤️",
-    "💕",
-    "💗",
-    "💖",
-    "💘",
-    "💝",
-    "💓",
-    "💞",
-    "💟",
-    "🥰",
-    "😍",
-    "😘"
-
-];
-
-
-function createFloatingEmoji() {
-
-    const emoji =
-        document.createElement("div");
-
-    emoji.className =
-        "floatingEmoji";
-
-
-    emoji.textContent =
-        loveEmojis[
-            Math.floor(
-                Math.random() *
-                loveEmojis.length
-            )
-        ];
-
-
-    emoji.style.left =
-        Math.random() * 100 + "%";
-
-
-    emoji.style.fontSize =
-        (18 + Math.random() * 32) + "px";
-
-
-    emoji.style.animationDuration =
-        (6 + Math.random() * 7) + "s";
-
-
-    emoji.style.animationDelay =
-        (Math.random() * 1) + "s";
-
-
-    heartContainer.appendChild(emoji);
-
-
-    setTimeout(() => {
-
-        emoji.remove();
-
-    }, 15000);
-}
-
-
-/*
-   Hearts start immediately when
-   website opens.
-*/
-
-setInterval(
-    createFloatingEmoji,
-    450
-);
-
-
-/*
-   Initial hearts
-*/
-
-for (
-    let i = 0;
-    i < 8;
-    i++
-) {
-
-    setTimeout(
-        createFloatingEmoji,
-        i * 200
-    );
-}
-
-
-
-/* =====================================================
-   SCRATCH PHOTOS
-===================================================== */
+/* ================= PHOTOS ================= */
 
 const photos = [
     "photo1.jpg",
@@ -186,26 +24,332 @@ const photos = [
 ];
 
 
-let currentPhoto = 0;
+/* ================= POEMS ================= */
 
-let scratchCompleted = false;
+const poems = [
 
-let isDrawing = false;
+    {
+        emoji: "💗",
+        title: "The First Time I Saw You...",
+        text:
+`Online-la oru naal unnai paarthen...
+Adhu verum oru paarvai-nu ninaichen,
 
-let lastPoint = null;
+Aana andha oru paarvaiye
+En manasula oru pudhu kathaiya
+aarambichiduchu... ❤️`
+    },
 
+
+    {
+        emoji: "✨",
+        title: "Something About You...",
+        text:
+`Un profile-ai paarkka paarkka,
+Enakku theriyama oru sirippu vandhadhu...
+
+Unna pathi edhuvum theriyama irundhaalum,
+Unnai therinjukkanum-nu
+oru aasai vandhadhu... 💕`
+    },
+
+
+    {
+        emoji: "💌",
+        title: "Our First Conversation...",
+        text:
+`Mudhal message anuppumbodhu
+En viralgal mattum illa...
+
+En manasum konjam nadungichu...
+
+Un reply vandha andha nodi,
+Enakku romba special-a maariduchu... ❤️`
+    },
+
+
+    {
+        emoji: "🥰",
+        title: "Getting To Know You...",
+        text:
+`Konjam konjama pesinom,
+Konjam konjama sirichom...
+
+Eppo unnoda message-kaaga
+En manasu wait panna aarambichadho
+Enakkே theriyala... 💗`
+    },
+
+
+    {
+        emoji: "💭",
+        title: "I Started Missing You...",
+        text:
+`Un message illaadha naalum,
+Un ninaivu mattum irundhudhu...
+
+Appothaan purinjadhu,
+Nee en life-la konjam konjam-a
+mukkiyama maaritta-nu... 🥺❤️`
+    },
+
+
+    {
+        emoji: "❤️",
+        title: "Maybe It Was Love...",
+        text:
+`Unna online-la paartha oru naal,
+En manasula oru feeling vandhadhu...
+
+Adhu friendship-aa,
+Attraction-aa-nu yosichen...
+
+Kaalam dhaan answer sonnadhu...
+
+Adhu kaadhal. ❤️`
+    },
+
+
+    {
+        emoji: "💖",
+        title: "You Became Special...",
+        text:
+`Ulagathula pala perai paarkalam...
+
+Aana en kannukku
+Unnai mattum dhaan
+theda thonudhu...
+
+Yen endru kettaal,
+En manasu sollum ore badhil...
+
+"Aval dhaan." 💖`
+    },
+
+
+    {
+        emoji: "🌹",
+        title: "I Want You In My Life...",
+        text:
+`Online-la aarambicha namma kathai,
+Inime online-la mattum irukka koodadhu...
+
+Un sirippai pakkathula paakanum,
+Un kaiya pidichu nadakkanum...
+
+Un kooda oru vaazhkai
+vaazhanum... ❤️`
+    },
+
+
+    {
+        emoji: "💍",
+        title: "One Last Thing...",
+        text:
+`Oru naal online-la unnai paarthen...
+
+Indru en vaazhkai muzhuvadhum
+unnai paarka aasai paduren...
+
+Mudhalil oru stranger,
+Piragu oru friend,
+Ippodhu en manasoda
+romba special-aana oruthar... ❤️
+
+En kathaiyin next chapter-la
+nee en kooda iruppiya? 💕`
+    }
+
+];
+
+
+/* ================= ELEMENTS ================= */
+
+const homeScreen =
+    document.getElementById("homeScreen");
+
+const scratchScreen =
+    document.getElementById("scratchScreen");
+
+const poemScreen =
+    document.getElementById("poemScreen");
+
+const proposalScreen =
+    document.getElementById("proposalScreen");
+
+const resultScreen =
+    document.getElementById("resultScreen");
+
+
+const openHeartBtn =
+    document.getElementById("openHeartBtn");
+
+const nextMemoryBtn =
+    document.getElementById("nextMemoryBtn");
+
+const yesBtn =
+    document.getElementById("yesBtn");
+
+const noBtn =
+    document.getElementById("noBtn");
+
+
+const scratchImage =
+    document.getElementById("scratchImage");
+
+const scratchCanvas =
+    document.getElementById("scratchCanvas");
+
+const scratchContainer =
+    document.getElementById("scratchContainer");
 
 const progressText =
     document.getElementById("progressText");
 
-const scratchContainer =
-    document.getElementById(
-        "scratchContainer"
-    );
+const scratchStatus =
+    document.getElementById("scratchStatus");
+
+const poemNumber =
+    document.getElementById("poemNumber");
+
+const poemTitle =
+    document.getElementById("poemTitle");
+
+const poemText =
+    document.getElementById("poemText");
+
+const poemEmoji =
+    document.getElementById("poemEmoji");
+
+const loveSong =
+    document.getElementById("loveSong");
+
+const heartContainer =
+    document.getElementById("heartContainer");
+
+const resultTitle =
+    document.getElementById("resultTitle");
+
+const resultMessage =
+    document.getElementById("resultMessage");
+
+const resultEmoji =
+    document.getElementById("resultEmoji");
 
 
+/* ================= VARIABLES ================= */
 
-/* ================= CREATE SCRATCH CARD ================= */
+let currentMemory = 0;
+
+let ctx = null;
+
+let isDrawing = false;
+
+let scratchCompleted = false;
+
+let scratchMoves = 0;
+
+let lastCheck = 0;
+
+
+/* ================= SCREEN CHANGE ================= */
+
+function showScreen(screen) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+    screen.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* ================= MUSIC ================= */
+
+function playLoveSong() {
+
+    loveSong.volume = 0.65;
+
+    const playPromise =
+        loveSong.play();
+
+    if (playPromise !== undefined) {
+
+        playPromise.catch(() => {
+
+            /*
+             Browser autoplay blocked.
+             It will play after user interaction.
+            */
+
+        });
+
+    }
+}
+
+
+/*
+   Try autoplay immediately.
+*/
+
+window.addEventListener(
+    "load",
+    () => {
+
+        playLoveSong();
+
+    }
+);
+
+
+/*
+   First touch/click will start music
+   if browser blocked autoplay.
+*/
+
+document.addEventListener(
+    "pointerdown",
+    () => {
+
+        playLoveSong();
+
+    },
+    {
+        once: true
+    }
+);
+
+
+/* ================= HOME ================= */
+
+openHeartBtn.addEventListener(
+    "click",
+    () => {
+
+        playLoveSong();
+
+        currentMemory = 0;
+
+        showScreen(
+            scratchScreen
+        );
+
+        createScratchCard();
+
+    }
+);
+
+
+/* ================= SCRATCH CARD ================= */
 
 function createScratchCard() {
 
@@ -213,95 +357,78 @@ function createScratchCard() {
 
     isDrawing = false;
 
-    lastPoint = null;
+    scratchMoves = 0;
 
-
-    scratchContainer.innerHTML = "";
+    lastCheck = 0;
 
 
     progressText.textContent =
-        "Memory " +
-        (currentPhoto + 1) +
-        " of 9";
+        `Memory ${currentMemory + 1} of 9`;
 
 
-    const card =
-        document.createElement("div");
-
-    card.className =
-        "scratchCard";
+    scratchStatus.textContent =
+        "Keep scratching... ❤️";
 
 
-    /* Photo */
-
-    const image =
-        document.createElement("img");
-
-    image.className =
-        "scratchImage";
-
-    image.src =
-        photos[currentPhoto];
-
-    image.alt =
-        "Love Memory " +
-        (currentPhoto + 1);
+    scratchImage.src =
+        photos[currentMemory];
 
 
-    image.onerror = function () {
+    /*
+       Remove old canvas
+    */
 
-        console.log(
-            "Photo not found:",
-            image.src
+    const oldCanvas =
+        document.getElementById(
+            "scratchCanvas"
         );
 
-    };
+    if (oldCanvas) {
+
+        oldCanvas.remove();
+
+    }
 
 
-    /* Canvas */
+    /*
+       Create fresh canvas
+    */
 
     const canvas =
         document.createElement("canvas");
+
+    canvas.id =
+        "scratchCanvas";
 
     canvas.className =
         "scratchCanvas";
 
 
-    card.appendChild(image);
-
-    card.appendChild(canvas);
-
-    scratchContainer.appendChild(card);
+    scratchContainer
+        .querySelector(".scratchCard")
+        .appendChild(canvas);
 
 
     /*
-       Wait until browser calculates
-       the actual card size.
+       Wait for image/card size
     */
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(
+        () => {
 
-        setupScratch(canvas);
+            setupCanvas(canvas);
 
-    });
-
+        }
+    );
 }
 
 
+/* ================= CANVAS SETUP ================= */
 
-/* ================= SETUP CANVAS ================= */
-
-function setupScratch(canvas) {
+function setupCanvas(canvas) {
 
     const rect =
         canvas.getBoundingClientRect();
-
-
-    const width =
-        Math.round(rect.width);
-
-    const height =
-        Math.round(rect.height);
 
 
     const dpr =
@@ -309,13 +436,13 @@ function setupScratch(canvas) {
 
 
     canvas.width =
-        width * dpr;
+        rect.width * dpr;
 
     canvas.height =
-        height * dpr;
+        rect.height * dpr;
 
 
-    const ctx =
+    ctx =
         canvas.getContext("2d");
 
 
@@ -330,38 +457,35 @@ function setupScratch(canvas) {
         ctx.createLinearGradient(
             0,
             0,
-            width,
-            height
+            rect.width,
+            rect.height
         );
 
 
     gradient.addColorStop(
         0,
-        "#c0c0c0"
+        "#ffb6d9"
     );
-
 
     gradient.addColorStop(
         0.5,
-        "#8d8d8d"
+        "#ff72ad"
     );
-
 
     gradient.addColorStop(
         1,
-        "#5f5f5f"
+        "#c026d3"
     );
 
 
     ctx.fillStyle =
         gradient;
 
-
     ctx.fillRect(
         0,
         0,
-        width,
-        height
+        rect.width,
+        rect.height
     );
 
 
@@ -370,268 +494,191 @@ function setupScratch(canvas) {
     */
 
     ctx.fillStyle =
-        "rgba(255,255,255,.95)";
-
-
-    ctx.font =
-        "bold 24px Arial";
-
+        "rgba(255,255,255,0.95)";
 
     ctx.textAlign =
         "center";
-
 
     ctx.textBaseline =
         "middle";
 
 
+    ctx.font =
+        "bold 25px Arial";
+
+
     ctx.fillText(
-        "Scratch Here ❤️",
-        width / 2,
-        height / 2
+        "Scratch Me ❤️",
+        rect.width / 2,
+        rect.height / 2 - 15
+    );
+
+
+    ctx.font =
+        "18px Arial";
+
+
+    ctx.fillText(
+        "Our memory is waiting...",
+        rect.width / 2,
+        rect.height / 2 + 25
     );
 
 
     /*
-       Scratch effect
+       Drawing settings
     */
 
     ctx.globalCompositeOperation =
         "destination-out";
 
 
+    /*
+       Events
+    */
 
-    function getPosition(event) {
+    canvas.addEventListener(
+        "pointerdown",
+        startScratch
+    );
 
-        const bounds =
-            canvas.getBoundingClientRect();
+    canvas.addEventListener(
+        "pointermove",
+        scratchMove
+    );
 
+    canvas.addEventListener(
+        "pointerup",
+        stopScratch
+    );
 
-        let clientX;
-        let clientY;
+    canvas.addEventListener(
+        "pointercancel",
+        stopScratch
+    );
 
-
-        if (
-            event.touches &&
-            event.touches.length > 0
-        ) {
-
-            clientX =
-                event.touches[0].clientX;
-
-            clientY =
-                event.touches[0].clientY;
-
-        } else {
-
-            clientX =
-                event.clientX;
-
-            clientY =
-                event.clientY;
-        }
+    canvas.addEventListener(
+        "pointerleave",
+        stopScratch
+    );
+}
 
 
-        return {
+/* ================= SCRATCH START ================= */
 
-            x:
-                clientX -
-                bounds.left,
+function startScratch(event) {
 
-            y:
-                clientY -
-                bounds.top
-
-        };
-
+    if (scratchCompleted) {
+        return;
     }
 
+    isDrawing = true;
 
-
-    function scratch(event) {
-
-        if (!isDrawing)
-            return;
-
-
-        const point =
-            getPosition(event);
-
-
-        ctx.lineWidth = 65;
-
-        ctx.lineCap =
-            "round";
-
-        ctx.lineJoin =
-            "round";
-
-
-        ctx.beginPath();
-
-
-        if (lastPoint) {
-
-            ctx.moveTo(
-                lastPoint.x,
-                lastPoint.y
-            );
-
-        } else {
-
-            ctx.moveTo(
-                point.x,
-                point.y
-            );
-        }
-
-
-        ctx.lineTo(
-            point.x,
-            point.y
-        );
-
-
-        ctx.stroke();
-
-
-        lastPoint =
-            point;
-
-
-        /*
-           Check scratched area
-           after enough movement.
-        */
-
-        checkScratchProgress(
-            canvas,
-            ctx
-        );
-
-    }
-
-
-
-    /* ================= MOUSE ================= */
-
-    canvas.addEventListener(
-        "mousedown",
-        (event) => {
-
-            isDrawing = true;
-
-            lastPoint =
-                getPosition(event);
-
-            scratch(event);
-
-        }
-    );
-
-
-    canvas.addEventListener(
-        "mousemove",
-        scratch
-    );
-
-
-    canvas.addEventListener(
-        "mouseup",
-        stopDrawing
-    );
-
-
-    canvas.addEventListener(
-        "mouseleave",
-        stopDrawing
-    );
-
-
-
-    /* ================= TOUCH ================= */
-
-    canvas.addEventListener(
-        "touchstart",
-        (event) => {
-
-            event.preventDefault();
-
-            isDrawing = true;
-
-            lastPoint =
-                getPosition(event);
-
-            scratch(event);
-
-        },
-        {
-            passive: false
-        }
-    );
-
-
-    canvas.addEventListener(
-        "touchmove",
-        (event) => {
-
-            event.preventDefault();
-
-            scratch(event);
-
-        },
-        {
-            passive: false
-        }
-    );
-
-
-    canvas.addEventListener(
-        "touchend",
-        (event) => {
-
-            event.preventDefault();
-
-            stopDrawing();
-
-        },
-        {
-            passive: false
-        }
-    );
-
-
-    function stopDrawing() {
-
-        isDrawing = false;
-
-        lastPoint = null;
-
-    }
+    scratchAt(event);
 
 }
 
 
+/* ================= SCRATCH MOVE ================= */
 
-/* =====================================================
-   CHECK SCRATCH PROGRESS
-===================================================== */
+function scratchMove(event) {
 
-let lastCheck = 0;
-
-
-function checkScratchProgress(
-    canvas,
-    ctx
-) {
-
-    if (scratchCompleted)
+    if (!isDrawing) {
         return;
+    }
+
+    scratchAt(event);
+
+}
+
+
+/* ================= SCRATCH END ================= */
+
+function stopScratch() {
+
+    isDrawing = false;
+
+}
+
+
+/* ================= SCRATCH DRAW ================= */
+
+function scratchAt(event) {
+
+    if (!ctx || scratchCompleted) {
+        return;
+    }
+
+
+    const canvas =
+        event.currentTarget;
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const x =
+        event.clientX -
+        rect.left;
+
+
+    const y =
+        event.clientY -
+        rect.top;
 
 
     /*
-       Don't check every single pixel movement.
+       Bigger brush for mobile
     */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        42,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    scratchMoves++;
+
+
+    /*
+       Fast reliable reveal
+    */
+
+    if (scratchMoves >= 30) {
+
+        revealCurrentPhoto();
+
+        return;
+
+    }
+
+
+    /*
+       Percentage check
+    */
+
+    checkScratchProgress(
+        canvas
+    );
+}
+
+
+/* ================= CHECK SCRATCH ================= */
+
+function checkScratchProgress(canvas) {
+
+    if (scratchCompleted) {
+        return;
+    }
+
 
     const now =
         Date.now();
@@ -639,340 +686,284 @@ function checkScratchProgress(
 
     if (
         now - lastCheck <
-        350
+        400
     ) {
 
         return;
+
     }
 
 
-    lastCheck =
-        now;
+    lastCheck = now;
 
 
-    const width =
-        canvas.width;
+    try {
 
-    const height =
-        canvas.height;
+        const width =
+            canvas.width;
 
-
-    /*
-       Read alpha channel
-    */
-
-    const imageData =
-        ctx.getImageData(
-            0,
-            0,
-            width,
-            height
-        );
+        const height =
+            canvas.height;
 
 
-    const pixels =
-        imageData.data;
+        /*
+           Sample pixels instead of
+           checking every pixel.
+        */
+
+        const imageData =
+            ctx.getImageData(
+                0,
+                0,
+                width,
+                height
+            );
 
 
-    let transparent =
-        0;
+        const data =
+            imageData.data;
 
 
-    /*
-       Check every 16th pixel
-       for performance.
-    */
+        let transparent =
+            0;
 
-    for (
-        let i = 3;
-        i < pixels.length;
-        i += 64
-    ) {
+        let total =
+            0;
 
-        if (
-            pixels[i] === 0
+
+        for (
+            let i = 3;
+            i < data.length;
+            i += 40
         ) {
 
-            transparent++;
+            total++;
+
+
+            if (
+                data[i] < 80
+            ) {
+
+                transparent++;
+
+            }
+
+        }
+
+
+        const percentage =
+            (
+                transparent /
+                total
+            ) * 100;
+
+
+        if (
+            percentage >= 20
+        ) {
+
+            revealCurrentPhoto();
 
         }
 
     }
+    catch (error) {
 
-
-    const total =
-        Math.floor(
-            pixels.length / 64
-        );
-
-
-    const percentage =
-        (transparent / total) * 100;
-
-
-    /*
-       If around 55% scratched,
-       automatically reveal photo.
-    */
-
-    if (
-        percentage >= 55
-    ) {
-
-        revealCurrentPhoto();
+        /*
+           If pixel checking fails,
+           move count still reveals it.
+        */
 
     }
-
 }
-
 
 
 /* ================= REVEAL PHOTO ================= */
 
 function revealCurrentPhoto() {
 
-    if (scratchCompleted)
+    if (scratchCompleted) {
         return;
+    }
 
 
     scratchCompleted = true;
 
 
+    scratchStatus.textContent =
+        "Memory revealed... ❤️";
+
+
     const canvas =
-        document.querySelector(
-            ".scratchCanvas"
+        document.getElementById(
+            "scratchCanvas"
         );
 
 
     if (canvas) {
 
         canvas.style.transition =
-            "opacity .7s ease";
+            "opacity 0.7s ease";
 
         canvas.style.opacity =
             "0";
 
-
-        setTimeout(() => {
-
-            if (canvas)
-                canvas.remove();
-
-        }, 700);
-
     }
 
 
     /*
-       Wait before next memory.
+       Show poem after
+       small reveal animation.
     */
 
-    setTimeout(() => {
-
-        currentPhoto++;
-
-
-        if (
-            currentPhoto >= 9
-        ) {
+    setTimeout(
+        () => {
 
             showPoem();
 
-        } else {
-
-            createScratchCard();
-
-        }
-
-    }, 1200);
-
+        },
+        800
+    );
 }
 
 
-
-/* =====================================================
-   SHOW POEM
-===================================================== */
+/* ================= SHOW POEM ================= */
 
 function showPoem() {
 
-    scratchScreen.classList.remove(
-        "active"
-    );
+    const poem =
+        poems[currentMemory];
 
 
-    poemScreen.classList.add(
-        "active"
-    );
-
-}
+    poemEmoji.textContent =
+        poem.emoji;
 
 
-
-/* =====================================================
-   PROPOSAL BUTTON
-===================================================== */
-
-const proposalBtn =
-    document.getElementById(
-        "proposalBtn"
-    );
+    poemNumber.textContent =
+        `Memory ${currentMemory + 1} of 9`;
 
 
-proposalBtn.addEventListener(
-    "click",
-    () => {
-
-        poemScreen.classList.remove(
-            "active"
-        );
-
-
-        proposalScreen.classList.add(
-            "active"
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   YES BUTTON
-===================================================== */
-
-const yesBtn =
-    document.getElementById(
-        "yesBtn"
-    );
-
-
-yesBtn.addEventListener(
-    "click",
-    async () => {
-
-        /*
-           Send result to owner.
-        */
-
-        await sendResult(
-            "YES ❤️"
-        );
-
-
-        /*
-           Show romantic result.
-        */
-
-        showFinalResult(
-            "YES ❤️",
-            "You just made my heart the happiest! 💍❤️"
-        );
-
-
-        createCelebration();
-
-    }
-);
-
-
-
-/* =====================================================
-   NO BUTTON
-===================================================== */
-
-const noBtn =
-    document.getElementById(
-        "noBtn"
-    );
-
-
-noBtn.addEventListener(
-    "mouseenter",
-    moveNoButton
-);
-
-
-noBtn.addEventListener(
-    "touchstart",
-    moveNoButton,
-    {
-        passive: false
-    }
-);
-
-
-function moveNoButton(event) {
-
-    if (event) {
-
-        event.preventDefault();
-
-    }
+    poemTitle.textContent =
+        poem.title;
 
 
     /*
-       Make NO button move away.
+       Preserve line breaks
     */
 
-    const padding = 20;
-
-
-    const maxX =
-        window.innerWidth -
-        noBtn.offsetWidth -
-        padding;
-
-
-    const maxY =
-        window.innerHeight -
-        noBtn.offsetHeight -
-        padding;
-
-
-    const x =
-        Math.max(
-            padding,
-            Math.random() *
-            maxX
+    poemText.innerHTML =
+        poem.text.replace(
+            /\n/g,
+            "<br>"
         );
 
 
-    const y =
-        Math.max(
-            padding,
-            Math.random() *
-            maxY
-        );
+    if (
+        currentMemory ===
+        poems.length - 1
+    ) {
+
+        nextMemoryBtn.textContent =
+            "One Last Question 💍";
+
+    }
+    else {
+
+        nextMemoryBtn.textContent =
+            "Next Memory ❤️";
+
+    }
 
 
-    noBtn.style.position =
-        "fixed";
-
-
-    noBtn.style.left =
-        x + "px";
-
-
-    noBtn.style.top =
-        y + "px";
-
-
-    noBtn.style.zIndex =
-        "9999";
-
+    showScreen(
+        poemScreen
+    );
 }
 
 
+/* ================= NEXT MEMORY ================= */
 
-/* =====================================================
-   SEND RESULT TO FORMSPREE
-===================================================== */
+nextMemoryBtn.addEventListener(
+    "click",
+    () => {
 
-async function sendResult(answer) {
+        /*
+           Last poem
+        */
 
-    const formspreeURL =
-        "https://formspree.io/f/xzepljrz";
+        if (
+            currentMemory >=
+            poems.length - 1
+        ) {
+
+            showScreen(
+                proposalScreen
+            );
+
+            return;
+
+        }
+
+
+        /*
+           Next photo
+        */
+
+        currentMemory++;
+
+        showScreen(
+            scratchScreen
+        );
+
+        createScratchCard();
+
+    }
+);
+
+
+/* ================= PROPOSAL ================= */
+
+
+/*
+   YES
+*/
+
+yesBtn.addEventListener(
+    "click",
+    () => {
+
+        sendAnswer("YES ❤️");
+
+    }
+);
+
+
+/*
+   NO
+*/
+
+noBtn.addEventListener(
+    "click",
+    () => {
+
+        sendAnswer("NO 😢");
+
+    }
+);
+
+
+/* ================= SEND FORM ================= */
+
+async function sendAnswer(answer) {
+
+    /*
+       Disable buttons
+       to prevent duplicate submits.
+    */
+
+    yesBtn.disabled = true;
+
+    noBtn.disabled = true;
 
 
     const formData =
@@ -986,14 +977,14 @@ async function sendResult(answer) {
 
 
     formData.append(
-        "date",
-        new Date().toLocaleString()
+        "message",
+        `Love proposal answer: ${answer}`
     );
 
 
     formData.append(
-        "website",
-        window.location.href
+        "date",
+        new Date().toLocaleString()
     );
 
 
@@ -1001,7 +992,7 @@ async function sendResult(answer) {
 
         const response =
             await fetch(
-                formspreeURL,
+                FORM_ENDPOINT,
                 {
                     method: "POST",
 
@@ -1015,28 +1006,32 @@ async function sendResult(answer) {
             );
 
 
-        if (
-            response.ok
-        ) {
+        if (response.ok) {
 
-            console.log(
-                "Result sent successfully."
+            showResult(
+                answer
             );
 
-        } else {
+        }
+        else {
 
-            console.log(
-                "Formspree error:",
-                response.status
+            showResult(
+                answer
             );
 
         }
 
-    } catch (error) {
+    }
+    catch (error) {
 
-        console.log(
-            "Could not send result:",
-            error
+        /*
+           Even if network response
+           has a problem, don't expose
+           the answer publicly.
+        */
+
+        showResult(
+            answer
         );
 
     }
@@ -1044,121 +1039,148 @@ async function sendResult(answer) {
 }
 
 
+/* ================= RESULT ================= */
 
-/* =====================================================
-   FINAL RESULT
-===================================================== */
+function showResult(answer) {
 
-function showFinalResult(
-    title,
-    message
-) {
-
-    proposalScreen.classList.remove(
-        "active"
+    showScreen(
+        resultScreen
     );
 
 
-    resultScreen.classList.add(
-        "active"
-    );
+    if (
+        answer ===
+        "YES ❤️"
+    ) {
 
+        resultEmoji.textContent =
+            "💖";
 
-    document.getElementById(
-        "resultTitle"
-    ).textContent =
-        title;
+        resultTitle.textContent =
+            "You Made My Heart Smile ❤️";
 
+        resultMessage.textContent =
+            "Thank you for choosing me. Our beautiful journey starts here... 💍✨";
 
-    document.getElementById(
-        "resultMessage"
-    ).textContent =
-        message;
+    }
+    else {
+
+        resultEmoji.textContent =
+            "🥺";
+
+        resultTitle.textContent =
+            "Thank You For Your Answer";
+
+        resultMessage.textContent =
+            "Whatever your answer, thank you for being honest. ❤️";
+
+    }
 
 }
 
 
+/* ================= FLOATING HEARTS ================= */
 
-/* =====================================================
-   YES CELEBRATION
-===================================================== */
-
-function createCelebration() {
-
-    const celebrationEmojis = [
-
-        "❤️",
-        "💖",
-        "💕",
-        "💗",
-        "💍",
-        "🥰",
-        "✨",
-        "💝"
-
-    ];
+const heartEmojis = [
+    "❤️",
+    "💕",
+    "💗",
+    "💖",
+    "💘",
+    "💝",
+    "💞",
+    "💓",
+    "✨",
+    "🥰"
+];
 
 
-    for (
-        let i = 0;
-        i < 40;
-        i++
-    ) {
+function createFloatingHeart() {
 
-        setTimeout(() => {
-
-            const emoji =
-                document.createElement(
-                    "div"
-                );
+    const heart =
+        document.createElement(
+            "div"
+        );
 
 
-            emoji.className =
-                "floatingEmoji";
+    heart.className =
+        "floatingEmoji";
 
 
-            emoji.textContent =
-                celebrationEmojis[
-                    Math.floor(
-                        Math.random() *
-                        celebrationEmojis.length
-                    )
-                ];
+    heart.textContent =
+        heartEmojis[
+            Math.floor(
+                Math.random() *
+                heartEmojis.length
+            )
+        ];
 
 
-            emoji.style.left =
-                Math.random() * 100 +
-                "%";
+    const size =
+        20 +
+        Math.random() * 40;
 
 
-            emoji.style.bottom =
-                "0";
+    const left =
+        Math.random() * 100;
 
 
-            emoji.style.fontSize =
-                (20 + Math.random() * 35) +
-                "px";
+    const duration =
+        5 +
+        Math.random() * 7;
 
 
-            emoji.style.animationDuration =
-                (3 + Math.random() * 4) +
-                "s";
+    heart.style.left =
+        `${left}%`;
 
 
-            heartContainer.appendChild(
-                emoji
-            );
+    heart.style.fontSize =
+        `${size}px`;
 
 
-            setTimeout(() => {
-
-                emoji.remove();
-
-            }, 8000);
+    heart.style.animationDuration =
+        `${duration}s`;
 
 
-        }, i * 80);
+    heartContainer.appendChild(
+        heart
+    );
 
-    }
+
+    setTimeout(
+        () => {
+
+            heart.remove();
+
+        },
+        duration * 1000 + 1000
+    );
+}
+
+
+/*
+   Hearts continuously.
+*/
+
+setInterval(
+    createFloatingHeart,
+    550
+);
+
+
+/*
+   Initial hearts.
+*/
+
+for (
+    let i = 0;
+    i < 8;
+    i++
+) {
+
+    setTimeout(
+        createFloatingHeart,
+        i * 250
+    );
 
 }
