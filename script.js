@@ -1,9 +1,11 @@
-/* =========================
+/* =====================================================
    LOVE PROPOSAL WEBSITE
-========================= */
+   Formspree:
+   https://formspree.io/f/xzepljrz
+===================================================== */
 
 
-/* ---------- Screens ---------- */
+/* ================= SCREEN ELEMENTS ================= */
 
 const startScreen =
     document.getElementById("startScreen");
@@ -21,81 +23,155 @@ const resultScreen =
     document.getElementById("resultScreen");
 
 
-/* ---------- Music ---------- */
+/* ================= MUSIC ================= */
 
-const music =
+const loveSong =
     document.getElementById("loveSong");
 
 const startBtn =
     document.getElementById("startBtn");
 
 
-startBtn.addEventListener("click", () => {
+/* ================= START ================= */
 
-    music.volume = 0.7;
+startBtn.addEventListener("click", async () => {
 
-    music.play().catch(() => {});
+    /*
+       Browser autoplay restriction:
+       Music starts after user taps the button.
+    */
+
+    try {
+
+        loveSong.volume = 0.65;
+
+        await loveSong.play();
+
+    } catch (error) {
+
+        console.log(
+            "Music could not autoplay:",
+            error
+        );
+    }
+
 
     startScreen.classList.remove("active");
 
     scratchScreen.classList.add("active");
+
+
+    currentPhoto = 0;
 
     createScratchCard();
 
 });
 
 
-/* ---------- Floating Hearts ---------- */
+
+/* =====================================================
+   FLOATING LOVE EMOJIS
+===================================================== */
 
 const heartContainer =
-    document.getElementById("hearts");
+    document.getElementById("heartContainer");
 
 
-function createHeart() {
+const loveEmojis = [
 
-    const heart =
+    "❤️",
+    "💕",
+    "💗",
+    "💖",
+    "💘",
+    "💝",
+    "💓",
+    "💞",
+    "💟",
+    "🥰",
+    "😍",
+    "😘"
+
+];
+
+
+function createFloatingEmoji() {
+
+    const emoji =
         document.createElement("div");
 
-    heart.className = "heart";
+    emoji.className =
+        "floatingEmoji";
 
-    const emojis = [
-        "❤️",
-        "💕",
-        "💗",
-        "💖",
-        "💘",
-        "💝",
-        "💓"
-    ];
 
-    heart.innerHTML =
-        emojis[
+    emoji.textContent =
+        loveEmojis[
             Math.floor(
-                Math.random() * emojis.length
+                Math.random() *
+                loveEmojis.length
             )
         ];
 
-    heart.style.left =
-        Math.random() * 100 + "vw";
 
-    heart.style.fontSize =
-        (15 + Math.random() * 30) + "px";
+    emoji.style.left =
+        Math.random() * 100 + "%";
 
-    heart.style.animationDuration =
-        (5 + Math.random() * 7) + "s";
 
-    heartContainer.appendChild(heart);
+    emoji.style.fontSize =
+        (18 + Math.random() * 32) + "px";
+
+
+    emoji.style.animationDuration =
+        (6 + Math.random() * 7) + "s";
+
+
+    emoji.style.animationDelay =
+        (Math.random() * 1) + "s";
+
+
+    heartContainer.appendChild(emoji);
+
 
     setTimeout(() => {
-        heart.remove();
-    }, 12000);
+
+        emoji.remove();
+
+    }, 15000);
 }
 
 
-setInterval(createHeart, 350);
+/*
+   Hearts start immediately when
+   website opens.
+*/
+
+setInterval(
+    createFloatingEmoji,
+    450
+);
 
 
-/* ---------- Scratch Photos ---------- */
+/*
+   Initial hearts
+*/
+
+for (
+    let i = 0;
+    i < 8;
+    i++
+) {
+
+    setTimeout(
+        createFloatingEmoji,
+        i * 200
+    );
+}
+
+
+
+/* =====================================================
+   SCRATCH PHOTOS
+===================================================== */
 
 const photos = [
 
@@ -114,40 +190,77 @@ const photos = [
 
 let currentPhoto = 0;
 
-let scratching = false;
+let scratchCompleted = false;
 
-let scratchedPixels = 0;
+let isDrawing = false;
+
+let lastPoint = null;
+
 
 const progressText =
     document.getElementById("progressText");
 
 const scratchContainer =
-    document.getElementById("scratchContainer");
+    document.getElementById(
+        "scratchContainer"
+    );
 
+
+
+/* ================= CREATE SCRATCH CARD ================= */
 
 function createScratchCard() {
 
+    scratchCompleted = false;
+
+    isDrawing = false;
+
+    lastPoint = null;
+
+
     scratchContainer.innerHTML = "";
 
-    scratchedPixels = 0;
 
-    progressText.innerText =
-        `Memory ${currentPhoto + 1} of 9`;
+    progressText.textContent =
+        "Memory " +
+        (currentPhoto + 1) +
+        " of 9";
 
 
     const card =
         document.createElement("div");
 
     card.className =
-        "scratch-card";
+        "scratchCard";
 
+
+    /* Photo */
 
     const image =
         document.createElement("img");
 
+    image.className =
+        "scratchImage";
+
     image.src =
         photos[currentPhoto];
 
+    image.alt =
+        "Love Memory " +
+        (currentPhoto + 1);
+
+
+    image.onerror = function () {
+
+        console.log(
+            "Photo not found:",
+            image.src
+        );
+
+    };
+
+
+    /* Canvas */
 
     const canvas =
         document.createElement("canvas");
@@ -163,154 +276,261 @@ function createScratchCard() {
     scratchContainer.appendChild(card);
 
 
-    setupCanvas(canvas);
+    /*
+       Wait until browser calculates
+       the actual card size.
+    */
+
+    requestAnimationFrame(() => {
+
+        setupScratch(canvas);
+
+    });
+
 }
 
 
-function setupCanvas(canvas) {
+
+/* ================= SETUP CANVAS ================= */
+
+function setupScratch(canvas) {
 
     const rect =
         canvas.getBoundingClientRect();
 
+
+    const width =
+        Math.round(rect.width);
+
+    const height =
+        Math.round(rect.height);
+
+
     const dpr =
         window.devicePixelRatio || 1;
 
+
     canvas.width =
-        rect.width * dpr;
+        width * dpr;
 
     canvas.height =
-        rect.height * dpr;
+        height * dpr;
+
 
     const ctx =
         canvas.getContext("2d");
 
+
     ctx.scale(dpr, dpr);
 
 
-    /* Scratch cover */
+    /*
+       Scratch cover
+    */
 
     const gradient =
         ctx.createLinearGradient(
             0,
             0,
-            rect.width,
-            rect.height
+            width,
+            height
         );
+
 
     gradient.addColorStop(
         0,
-        "#bdbdbd"
+        "#c0c0c0"
     );
+
+
+    gradient.addColorStop(
+        0.5,
+        "#8d8d8d"
+    );
+
 
     gradient.addColorStop(
         1,
-        "#757575"
+        "#5f5f5f"
     );
+
 
     ctx.fillStyle =
         gradient;
 
+
     ctx.fillRect(
         0,
         0,
-        rect.width,
-        rect.height
+        width,
+        height
     );
 
 
+    /*
+       Cover text
+    */
+
     ctx.fillStyle =
-        "white";
+        "rgba(255,255,255,.95)";
+
 
     ctx.font =
         "bold 24px Arial";
 
+
     ctx.textAlign =
         "center";
 
+
+    ctx.textBaseline =
+        "middle";
+
+
     ctx.fillText(
         "Scratch Here ❤️",
-        rect.width / 2,
-        rect.height / 2
+        width / 2,
+        height / 2
     );
 
 
-    function scratch(e) {
+    /*
+       Scratch effect
+    */
 
-        if (!scratching)
-            return;
+    ctx.globalCompositeOperation =
+        "destination-out";
+
+
+
+    function getPosition(event) {
 
         const bounds =
             canvas.getBoundingClientRect();
 
-        let x;
-        let y;
+
+        let clientX;
+        let clientY;
 
 
-        if (e.touches) {
+        if (
+            event.touches &&
+            event.touches.length > 0
+        ) {
 
-            x =
-                e.touches[0].clientX -
-                bounds.left;
+            clientX =
+                event.touches[0].clientX;
 
-            y =
-                e.touches[0].clientY -
-                bounds.top;
+            clientY =
+                event.touches[0].clientY;
 
         } else {
 
-            x =
-                e.clientX -
-                bounds.left;
+            clientX =
+                event.clientX;
 
-            y =
-                e.clientY -
-                bounds.top;
+            clientY =
+                event.clientY;
         }
 
 
-        ctx.globalCompositeOperation =
-            "destination-out";
+        return {
+
+            x:
+                clientX -
+                bounds.left,
+
+            y:
+                clientY -
+                bounds.top
+
+        };
+
+    }
+
+
+
+    function scratch(event) {
+
+        if (!isDrawing)
+            return;
+
+
+        const point =
+            getPosition(event);
+
+
+        ctx.lineWidth = 65;
+
+        ctx.lineCap =
+            "round";
+
+        ctx.lineJoin =
+            "round";
 
 
         ctx.beginPath();
 
-        ctx.arc(
-            x,
-            y,
-            35,
-            0,
-            Math.PI * 2
+
+        if (lastPoint) {
+
+            ctx.moveTo(
+                lastPoint.x,
+                lastPoint.y
+            );
+
+        } else {
+
+            ctx.moveTo(
+                point.x,
+                point.y
+            );
+        }
+
+
+        ctx.lineTo(
+            point.x,
+            point.y
         );
 
-        ctx.fill();
+
+        ctx.stroke();
 
 
-        scratchedPixels++;
+        lastPoint =
+            point;
 
-        if (
-            scratchedPixels > 100
-        ) {
 
-            nextPhoto();
+        /*
+           Check scratched area
+           after enough movement.
+        */
 
-        }
+        checkScratchProgress(
+            canvas,
+            ctx
+        );
+
     }
 
 
+
+    /* ================= MOUSE ================= */
+
     canvas.addEventListener(
         "mousedown",
-        () => scratching = true
+        (event) => {
+
+            isDrawing = true;
+
+            lastPoint =
+                getPosition(event);
+
+            scratch(event);
+
+        }
     );
 
-    canvas.addEventListener(
-        "mouseup",
-        () => scratching = false
-    );
-
-    canvas.addEventListener(
-        "mouseleave",
-        () => scratching = false
-    );
 
     canvas.addEventListener(
         "mousemove",
@@ -319,76 +539,286 @@ function setupCanvas(canvas) {
 
 
     canvas.addEventListener(
-        "touchstart",
-        (e) => {
-
-            e.preventDefault();
-
-            scratching = true;
-
-            scratch(e);
-        },
-        { passive: false }
+        "mouseup",
+        stopDrawing
     );
 
 
     canvas.addEventListener(
-        "touchend",
-        () => scratching = false
+        "mouseleave",
+        stopDrawing
+    );
+
+
+
+    /* ================= TOUCH ================= */
+
+    canvas.addEventListener(
+        "touchstart",
+        (event) => {
+
+            event.preventDefault();
+
+            isDrawing = true;
+
+            lastPoint =
+                getPosition(event);
+
+            scratch(event);
+
+        },
+        {
+            passive: false
+        }
     );
 
 
     canvas.addEventListener(
         "touchmove",
-        (e) => {
+        (event) => {
 
-            e.preventDefault();
+            event.preventDefault();
 
-            scratch(e);
+            scratch(event);
 
         },
-        { passive: false }
+        {
+            passive: false
+        }
     );
+
+
+    canvas.addEventListener(
+        "touchend",
+        (event) => {
+
+            event.preventDefault();
+
+            stopDrawing();
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    function stopDrawing() {
+
+        isDrawing = false;
+
+        lastPoint = null;
+
+    }
+
 }
 
 
-/* ---------- Next Photo ---------- */
 
-function nextPhoto() {
+/* =====================================================
+   CHECK SCRATCH PROGRESS
+===================================================== */
 
-    if (currentPhoto >= 9)
+let lastCheck = 0;
+
+
+function checkScratchProgress(
+    canvas,
+    ctx
+) {
+
+    if (scratchCompleted)
         return;
 
 
-    currentPhoto++;
+    /*
+       Don't check every single pixel movement.
+    */
+
+    const now =
+        Date.now();
 
 
-    if (currentPhoto >= 9) {
-
-        setTimeout(() => {
-
-            scratchScreen.classList.remove(
-                "active"
-            );
-
-            poemScreen.classList.add(
-                "active"
-            );
-
-        }, 700);
+    if (
+        now - lastCheck <
+        350
+    ) {
 
         return;
     }
 
 
-    createScratchCard();
+    lastCheck =
+        now;
+
+
+    const width =
+        canvas.width;
+
+    const height =
+        canvas.height;
+
+
+    /*
+       Read alpha channel
+    */
+
+    const imageData =
+        ctx.getImageData(
+            0,
+            0,
+            width,
+            height
+        );
+
+
+    const pixels =
+        imageData.data;
+
+
+    let transparent =
+        0;
+
+
+    /*
+       Check every 16th pixel
+       for performance.
+    */
+
+    for (
+        let i = 3;
+        i < pixels.length;
+        i += 64
+    ) {
+
+        if (
+            pixels[i] === 0
+        ) {
+
+            transparent++;
+
+        }
+
+    }
+
+
+    const total =
+        Math.floor(
+            pixels.length / 64
+        );
+
+
+    const percentage =
+        (transparent / total) * 100;
+
+
+    /*
+       If around 55% scratched,
+       automatically reveal photo.
+    */
+
+    if (
+        percentage >= 55
+    ) {
+
+        revealCurrentPhoto();
+
+    }
+
 }
 
 
-/* ---------- Proposal ---------- */
+
+/* ================= REVEAL PHOTO ================= */
+
+function revealCurrentPhoto() {
+
+    if (scratchCompleted)
+        return;
+
+
+    scratchCompleted = true;
+
+
+    const canvas =
+        document.querySelector(
+            ".scratchCanvas"
+        );
+
+
+    if (canvas) {
+
+        canvas.style.transition =
+            "opacity .7s ease";
+
+        canvas.style.opacity =
+            "0";
+
+
+        setTimeout(() => {
+
+            if (canvas)
+                canvas.remove();
+
+        }, 700);
+
+    }
+
+
+    /*
+       Wait before next memory.
+    */
+
+    setTimeout(() => {
+
+        currentPhoto++;
+
+
+        if (
+            currentPhoto >= 9
+        ) {
+
+            showPoem();
+
+        } else {
+
+            createScratchCard();
+
+        }
+
+    }, 1200);
+
+}
+
+
+
+/* =====================================================
+   SHOW POEM
+===================================================== */
+
+function showPoem() {
+
+    scratchScreen.classList.remove(
+        "active"
+    );
+
+
+    poemScreen.classList.add(
+        "active"
+    );
+
+}
+
+
+
+/* =====================================================
+   PROPOSAL BUTTON
+===================================================== */
 
 const proposalBtn =
-    document.getElementById("proposalBtn");
+    document.getElementById(
+        "proposalBtn"
+    );
 
 
 proposalBtn.addEventListener(
@@ -399,6 +829,7 @@ proposalBtn.addEventListener(
             "active"
         );
 
+
         proposalScreen.classList.add(
             "active"
         );
@@ -407,92 +838,138 @@ proposalBtn.addEventListener(
 );
 
 
-/* ---------- YES / NO ---------- */
+
+/* =====================================================
+   YES BUTTON
+===================================================== */
 
 const yesBtn =
-    document.getElementById("yesBtn");
-
-const noBtn =
-    document.getElementById("noBtn");
+    document.getElementById(
+        "yesBtn"
+    );
 
 
 yesBtn.addEventListener(
     "click",
-    () => {
+    async () => {
 
-        sendResult("YES");
+        /*
+           Send result to owner.
+        */
 
-        showResult(
+        await sendResult(
+            "YES ❤️"
+        );
+
+
+        /*
+           Show romantic result.
+        */
+
+        showFinalResult(
             "YES ❤️",
             "You just made my heart the happiest! 💍❤️"
         );
+
+
+        createCelebration();
 
     }
 );
 
 
-/* Fun NO button */
+
+/* =====================================================
+   NO BUTTON
+===================================================== */
+
+const noBtn =
+    document.getElementById(
+        "noBtn"
+    );
+
 
 noBtn.addEventListener(
-    "mouseover",
+    "mouseenter",
     moveNoButton
 );
+
 
 noBtn.addEventListener(
     "touchstart",
-    moveNoButton
+    moveNoButton,
+    {
+        passive: false
+    }
 );
 
 
-function moveNoButton(e) {
+function moveNoButton(event) {
 
-    e.preventDefault();
+    if (event) {
+
+        event.preventDefault();
+
+    }
+
+
+    /*
+       Make NO button move away.
+    */
+
+    const padding = 20;
+
 
     const maxX =
-        window.innerWidth - 150;
+        window.innerWidth -
+        noBtn.offsetWidth -
+        padding;
+
 
     const maxY =
-        window.innerHeight - 80;
+        window.innerHeight -
+        noBtn.offsetHeight -
+        padding;
+
+
+    const x =
+        Math.max(
+            padding,
+            Math.random() *
+            maxX
+        );
+
+
+    const y =
+        Math.max(
+            padding,
+            Math.random() *
+            maxY
+        );
 
 
     noBtn.style.position =
         "fixed";
 
+
     noBtn.style.left =
-        Math.random() * maxX + "px";
+        x + "px";
+
 
     noBtn.style.top =
-        Math.random() * maxY + "px";
+        y + "px";
+
+
+    noBtn.style.zIndex =
+        "9999";
+
 }
 
 
-/* ---------- Result ---------- */
 
-function showResult(title, message) {
-
-    proposalScreen.classList.remove(
-        "active"
-    );
-
-    resultScreen.classList.add(
-        "active"
-    );
-
-    document.getElementById(
-        "resultEmoji"
-    ).innerHTML = "💖";
-
-    document.getElementById(
-        "resultTitle"
-    ).innerText = title;
-
-    document.getElementById(
-        "resultMessage"
-    ).innerText = message;
-}
-
-
-/* ---------- Formspree ---------- */
+/* =====================================================
+   SEND RESULT TO FORMSPREE
+===================================================== */
 
 async function sendResult(answer) {
 
@@ -500,48 +977,190 @@ async function sendResult(answer) {
         "https://formspree.io/f/xzepljrz";
 
 
-    const data = {
+    const formData =
+        new FormData();
 
-        answer: answer,
 
-        date:
-            new Date().toLocaleString(),
+    formData.append(
+        "answer",
+        answer
+    );
 
-        page:
-            window.location.href
 
-    };
+    formData.append(
+        "date",
+        new Date().toLocaleString()
+    );
+
+
+    formData.append(
+        "website",
+        window.location.href
+    );
 
 
     try {
 
-        await fetch(
-            formspreeURL,
-            {
+        const response =
+            await fetch(
+                formspreeURL,
+                {
+                    method: "POST",
 
-                method: "POST",
+                    body: formData,
 
-                headers: {
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
 
-                    "Content-Type":
-                        "application/json",
 
-                    "Accept":
-                        "application/json"
+        if (
+            response.ok
+        ) {
 
-                },
+            console.log(
+                "Result sent successfully."
+            );
 
-                body:
-                    JSON.stringify(data)
+        } else {
 
-            }
-        );
+            console.log(
+                "Formspree error:",
+                response.status
+            );
+
+        }
 
     } catch (error) {
 
         console.log(
-            "Result sending failed"
+            "Could not send result:",
+            error
         );
 
     }
+
+}
+
+
+
+/* =====================================================
+   FINAL RESULT
+===================================================== */
+
+function showFinalResult(
+    title,
+    message
+) {
+
+    proposalScreen.classList.remove(
+        "active"
+    );
+
+
+    resultScreen.classList.add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "resultTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "resultMessage"
+    ).textContent =
+        message;
+
+}
+
+
+
+/* =====================================================
+   YES CELEBRATION
+===================================================== */
+
+function createCelebration() {
+
+    const celebrationEmojis = [
+
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💍",
+        "🥰",
+        "✨",
+        "💝"
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < 40;
+        i++
+    ) {
+
+        setTimeout(() => {
+
+            const emoji =
+                document.createElement(
+                    "div"
+                );
+
+
+            emoji.className =
+                "floatingEmoji";
+
+
+            emoji.textContent =
+                celebrationEmojis[
+                    Math.floor(
+                        Math.random() *
+                        celebrationEmojis.length
+                    )
+                ];
+
+
+            emoji.style.left =
+                Math.random() * 100 +
+                "%";
+
+
+            emoji.style.bottom =
+                "0";
+
+
+            emoji.style.fontSize =
+                (20 + Math.random() * 35) +
+                "px";
+
+
+            emoji.style.animationDuration =
+                (3 + Math.random() * 4) +
+                "s";
+
+
+            heartContainer.appendChild(
+                emoji
+            );
+
+
+            setTimeout(() => {
+
+                emoji.remove();
+
+            }, 8000);
+
+
+        }, i * 80);
+
+    }
+
 }
