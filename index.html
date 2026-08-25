@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Our Love Story ❤️</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./style.css?v=2">
+    <title>Our Little Love Story ❤️</title>
+
+    <link rel="stylesheet" href="./style.css?v=5">
 </head>
 
 <body>
@@ -14,28 +16,29 @@
     <!-- Floating Love Emojis -->
     <div id="heartContainer"></div>
 
-    <!-- Background Music -->
-    <audio id="loveSong" loop preload="auto">
-        <source src="love-song.mp3" type="audio/mpeg">
-    </audio>
 
+    <!-- ================= HOME ================= -->
 
-    <!-- ================= START SCREEN ================= -->
+    <section id="homeScreen" class="screen active">
 
-    <section id="startScreen" class="screen active">
+        <div class="glass">
 
-        <div class="glass startBox">
+            <div class="mainHeart">
+                💗
+            </div>
 
-            <div class="mainHeart">❤️</div>
-
-            <h1>Our Little Love Story</h1>
+            <h1>
+                Our Little Love Story
+            </h1>
 
             <p>
                 I have something special<br>
                 waiting for you...
             </p>
 
-            <button id="startBtn" class="mainBtn">
+            <button
+                id="openHeartBtn"
+                class="mainBtn">
                 Open My Heart 💕
             </button>
 
@@ -45,23 +48,47 @@
 
 
 
-    <!-- ================= SCRATCH SCREEN ================= -->
+    <!-- ================= SCRATCH ================= -->
 
     <section id="scratchScreen" class="screen">
 
         <div class="contentBox">
 
-            <h1>Scratch Our Memories ❤️</h1>
+            <h1>
+                Scratch Our Memories ❤️
+            </h1>
 
-            <p id="progressText">
+            <div id="progressText">
                 Memory 1 of 9
-            </p>
+            </div>
 
             <p class="scratchHint">
-                Scratch the photo with your finger ❤️
+                Scratch the photo to reveal our memory ✨
             </p>
 
-            <div id="scratchContainer"></div>
+
+            <div id="scratchContainer">
+
+                <div class="scratchCard">
+
+                    <img
+                        id="scratchImage"
+                        class="scratchImage"
+                        src="photo1.jpg"
+                        alt="Our Memory">
+
+                    <canvas
+                        id="scratchCanvas"
+                        class="scratchCanvas">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+            <p id="scratchStatus">
+                Keep scratching... ❤️
+            </p>
 
         </div>
 
@@ -69,39 +96,35 @@
 
 
 
-    <!-- ================= POEM SCREEN ================= -->
+    <!-- ================= POEM ================= -->
 
     <section id="poemScreen" class="screen">
 
         <div class="glass poemBox">
 
-            <div class="floatingHeart">💗</div>
-
-            <h1>For You...</h1>
-
-            <div class="poem">
-
-                Unnodu pesum ovvoru nodiyum,<br>
-                En manadhil oru azhagana kavidhai... ❤️
-                <br><br>
-
-                Un sirippil en santhosham,<br>
-                Un paarvaiyil en ulagam,<br>
-                Un kooda irukkum ovvoru naalum<br>
-                Enakku oru pudhiya thodakkam... 💕
-                <br><br>
-
-                Indha vaazhkai muzhuvadhum,<br>
-                Un kaiya pidichu nadakka aasai... 💗
-                <br><br>
-
-                Ennodu indha payanathai<br>
-                Nee thodara virumbugiraaya? 💍
-
+            <div
+                id="poemEmoji"
+                class="floatingHeart">
+                💕
             </div>
 
-            <button id="proposalBtn" class="mainBtn">
-                One Last Question ❤️
+            <div id="poemNumber">
+                Memory 1
+            </div>
+
+            <h1 id="poemTitle">
+                For You...
+            </h1>
+
+            <div
+                id="poemText"
+                class="poem">
+            </div>
+
+            <button
+                id="nextMemoryBtn"
+                class="mainBtn">
+                Next Memory ❤️
             </button>
 
         </div>
@@ -110,7 +133,7 @@
 
 
 
-    <!-- ================= PROPOSAL SCREEN ================= -->
+    <!-- ================= PROPOSAL ================= -->
 
     <section id="proposalScreen" class="screen">
 
@@ -125,17 +148,29 @@
             </h1>
 
             <p>
-                I don't want a perfect life...<br>
-                I just want a life with you. ❤️
+                Namma story online-la start aachu... ❤️
+                <br><br>
+
+                Aana indha story
+                life-long-a continue aaganum-nu
+                naan aasai paduren.
             </p>
+
+            <h2>
+                Will you be mine forever? ❤️
+            </h2>
 
             <div class="proposalButtons">
 
-                <button id="yesBtn" class="yesBtn">
+                <button
+                    id="yesBtn"
+                    class="yesBtn">
                     YES ❤️
                 </button>
 
-                <button id="noBtn" class="noBtn">
+                <button
+                    id="noBtn"
+                    class="noBtn">
                     NO 😢
                 </button>
 
@@ -147,19 +182,23 @@
 
 
 
-    <!-- ================= FINAL SCREEN ================= -->
+    <!-- ================= THANK YOU ================= -->
 
     <section id="resultScreen" class="screen">
 
         <div class="glass resultBox">
 
             <div id="resultEmoji">
-                💖
+                ❤️
             </div>
 
-            <h1 id="resultTitle"></h1>
+            <h1 id="resultTitle">
+                Thank You ❤️
+            </h1>
 
-            <p id="resultMessage"></p>
+            <p id="resultMessage">
+                Your answer has been sent with love.
+            </p>
 
         </div>
 
@@ -167,7 +206,21 @@
 
 
 
-    <script src="script.js"></script>
+    <!-- ================= MUSIC ================= -->
+
+    <audio
+        id="loveSong"
+        loop
+        preload="auto">
+
+        <source
+            src="love-song.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <script src="./script.js?v=5"></script>
 
 </body>
 </html>
