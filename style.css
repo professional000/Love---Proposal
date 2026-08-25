@@ -4,16 +4,13 @@
     padding: 0;
 }
 
-
 html,
 body {
     width: 100%;
     min-height: 100%;
 }
 
-
 body {
-
     min-height: 100vh;
 
     font-family:
@@ -45,11 +42,9 @@ body {
 }
 
 
-
-/* ================= SCREEN SYSTEM ================= */
+/* ================= SCREENS ================= */
 
 .screen {
-
     display: none;
 
     width: 100%;
@@ -65,21 +60,21 @@ body {
     padding: 25px;
 }
 
-
 .screen.active {
-
     display: flex;
 
     animation:
-        screenIn 0.8s ease forwards;
+        screenIn
+        0.7s
+        ease
+        forwards;
 }
-
 
 @keyframes screenIn {
 
     from {
         opacity: 0;
-        transform: scale(0.96);
+        transform: scale(.97);
     }
 
     to {
@@ -89,11 +84,9 @@ body {
 }
 
 
-
 /* ================= GLASS ================= */
 
 .glass {
-
     width: min(92vw, 650px);
 
     padding: 45px 28px;
@@ -103,10 +96,11 @@ body {
     border-radius: 32px;
 
     background:
-        rgba(255, 255, 255, 0.16);
+        rgba(255,255,255,.16);
 
     border:
-        1px solid rgba(255, 255, 255, 0.35);
+        1px solid
+        rgba(255,255,255,.35);
 
     backdrop-filter:
         blur(20px);
@@ -115,23 +109,20 @@ body {
         blur(20px);
 
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.25);
+        0 25px 70px
+        rgba(0,0,0,.25);
 }
 
-
 .contentBox {
-
     width: min(95vw, 700px);
 
     text-align: center;
 }
 
 
-
 /* ================= TEXT ================= */
 
 h1 {
-
     font-family:
         Georgia,
         "Times New Roman",
@@ -145,12 +136,11 @@ h1 {
     margin-bottom: 20px;
 
     text-shadow:
-        0 4px 15px rgba(0,0,0,.2);
+        0 4px 15px
+        rgba(0,0,0,.2);
 }
 
-
 p {
-
     font-size: 1.15rem;
 
     line-height: 1.7;
@@ -159,19 +149,18 @@ p {
 }
 
 
-
 /* ================= MAIN HEART ================= */
 
 .mainHeart {
-
     font-size: 90px;
 
     margin-bottom: 15px;
 
     animation:
-        heartbeat 1.3s infinite;
+        heartbeat
+        1.3s
+        infinite;
 }
-
 
 @keyframes heartbeat {
 
@@ -194,11 +183,9 @@ p {
 }
 
 
-
 /* ================= BUTTON ================= */
 
 button {
-
     border: none;
 
     outline: none;
@@ -216,29 +203,29 @@ button {
 
     transition:
         transform .25s ease,
-        box-shadow .25s ease;
+        box-shadow .25s ease,
+        opacity .25s ease;
 }
-
 
 button:hover {
-
-    transform:
-        scale(1.06);
+    transform: scale(1.06);
 
     box-shadow:
-        0 12px 30px rgba(0,0,0,.25);
+        0 12px 30px
+        rgba(0,0,0,.25);
 }
-
 
 button:active {
-
-    transform:
-        scale(.96);
+    transform: scale(.96);
 }
 
+button:disabled {
+    opacity: .6;
+
+    cursor: not-allowed;
+}
 
 .mainBtn {
-
     padding:
         16px 30px;
 
@@ -249,64 +236,51 @@ button:active {
     background: white;
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,.2);
+        0 8px 25px
+        rgba(0,0,0,.2);
 }
-
 
 
 /* ================= SCRATCH ================= */
 
 #scratchScreen {
+    align-items: flex-start;
 
-    align-items:
-        flex-start;
-
-    padding-top: 60px;
+    padding-top: 55px;
 }
 
-
 #scratchScreen h1 {
-
     font-size:
         clamp(2rem, 7vw, 3.5rem);
 }
 
-
 #progressText {
-
-    font-size: 1.25rem;
+    font-size: 1.2rem;
 
     font-weight: 700;
 
     margin-bottom: 5px;
 }
 
-
 .scratchHint {
-
     font-size: .95rem;
 
     opacity: .9;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
-
 #scratchContainer {
-
     width: min(90vw, 430px);
 
     height: min(112vw, 500px);
 
-    margin:
-        0 auto;
+    margin: 0 auto;
 
     position: relative;
 }
 
-
 .scratchCard {
-
     position: absolute;
 
     inset: 0;
@@ -318,32 +292,27 @@ button:active {
     background: white;
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,.35);
+        0 25px 60px
+        rgba(0,0,0,.35);
 }
 
-
 .scratchImage {
-
     position: absolute;
 
     inset: 0;
 
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
 }
 
-
 .scratchCanvas {
-
     position: absolute;
 
     inset: 0;
 
     width: 100%;
-
     height: 100%;
 
     touch-action: none;
@@ -351,29 +320,50 @@ button:active {
     cursor: crosshair;
 }
 
+#scratchStatus {
+    margin-top: 15px;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+}
 
 
 /* ================= POEM ================= */
 
 .poemBox {
-
     max-width: 680px;
+
+    width: min(94vw, 680px);
 }
 
-
 .floatingHeart {
-
     font-size: 75px;
 
     margin-bottom: 10px;
 
     animation:
-        heartbeat 1.3s infinite;
+        heartbeat
+        1.3s
+        infinite;
 }
 
+#poemNumber {
+    font-size: .95rem;
+
+    opacity: .9;
+
+    margin-bottom: 10px;
+}
+
+#poemTitle {
+    font-size:
+        clamp(2rem, 7vw, 3.4rem);
+
+    margin-bottom: 25px;
+}
 
 .poem {
-
     font-family:
         Georgia,
         "Times New Roman",
@@ -388,44 +378,42 @@ button:active {
 }
 
 
-
 /* ================= PROPOSAL ================= */
 
-.ring {
+.proposalBox h1 {
+    font-size:
+        clamp(2.3rem, 9vw, 4rem);
+}
 
+.ring {
     font-size: 100px;
 
     margin-bottom: 15px;
 
     animation:
-        ringFloat 2s ease-in-out infinite;
+        ringFloat
+        2s
+        ease-in-out
+        infinite;
 }
-
 
 @keyframes ringFloat {
 
     0%,
     100% {
-        transform: translateY(0)
-                   rotate(-5deg);
+        transform:
+            translateY(0)
+            rotate(-5deg);
     }
 
     50% {
-        transform: translateY(-15px)
-                   rotate(5deg);
+        transform:
+            translateY(-15px)
+            rotate(5deg);
     }
 }
 
-
-.proposalBox h1 {
-
-    font-size:
-        clamp(2.3rem, 9vw, 4rem);
-}
-
-
 .proposalButtons {
-
     display: flex;
 
     justify-content: center;
@@ -439,9 +427,7 @@ button:active {
     margin-top: 30px;
 }
 
-
 .yesBtn {
-
     padding:
         17px 38px;
 
@@ -461,9 +447,7 @@ button:active {
         rgba(255,23,68,.4);
 }
 
-
 .noBtn {
-
     padding:
         17px 38px;
 
@@ -475,32 +459,28 @@ button:active {
 }
 
 
-
 /* ================= RESULT ================= */
 
 #resultEmoji {
-
     font-size: 100px;
 
     margin-bottom: 15px;
 
     animation:
-        heartbeat 1.2s infinite;
+        heartbeat
+        1.2s
+        infinite;
 }
 
-
 .resultBox h1 {
-
     font-size:
         clamp(2.2rem, 8vw, 4rem);
 }
 
 
-
 /* ================= FLOATING HEARTS ================= */
 
 #heartContainer {
-
     position: fixed;
 
     inset: 0;
@@ -512,9 +492,7 @@ button:active {
     z-index: 2;
 }
 
-
 .floatingEmoji {
-
     position: absolute;
 
     bottom: -80px;
@@ -522,7 +500,9 @@ button:active {
     opacity: 0;
 
     animation:
-        floatUp linear forwards;
+        floatUp
+        linear
+        forwards;
 
     filter:
         drop-shadow(
@@ -531,11 +511,9 @@ button:active {
         );
 }
 
-
 @keyframes floatUp {
 
     0% {
-
         transform:
             translateY(0)
             rotate(0deg)
@@ -549,7 +527,6 @@ button:active {
     }
 
     50% {
-
         transform:
             translateY(-50vh)
             rotate(180deg)
@@ -557,7 +534,6 @@ button:active {
     }
 
     100% {
-
         transform:
             translateY(-115vh)
             rotate(360deg)
@@ -568,52 +544,36 @@ button:active {
 }
 
 
-
 /* ================= MOBILE ================= */
 
 @media (max-width: 600px) {
 
     .screen {
-
-        padding:
-            18px;
+        padding: 18px;
     }
 
-
     .glass {
-
         padding:
             35px 18px;
 
-        border-radius:
-            25px;
+        border-radius: 25px;
     }
 
-
     .mainHeart {
-
         font-size: 70px;
     }
 
-
     h1 {
-
-        font-size:
-            2.25rem;
+        font-size: 2.25rem;
     }
-
 
     .poem {
-
         line-height: 1.8;
 
-        font-size:
-            1rem;
+        font-size: 1rem;
     }
 
-
     #scratchContainer {
-
         width: 88vw;
 
         height: 110vw;
@@ -621,17 +581,16 @@ button:active {
         max-height: 500px;
     }
 
-
     .proposalButtons {
-
         gap: 15px;
     }
 
-
     .yesBtn,
     .noBtn {
+        min-width: 130px;
+    }
 
-        min-width:
-            130px;
+    .ring {
+        font-size: 80px;
     }
 }
