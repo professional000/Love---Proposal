@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Our Love Story ❤️</title>
 
@@ -13,135 +11,163 @@
 
 <body>
 
-<!-- Floating Hearts -->
-<div id="hearts"></div>
+    <!-- Floating Love Emojis -->
+    <div id="heartContainer"></div>
 
-<!-- Music -->
-<audio id="loveSong" loop>
-    <source src="music/love-song.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Start Screen -->
-<section id="startScreen" class="screen active">
-
-    <div class="glass">
-
-        <div class="big-heart">❤️</div>
-
-        <h1>Our Little Love Story</h1>
-
-        <p>
-            I have something special<br>
-            waiting for you...
-        </p>
-
-        <button id="startBtn">
-            Open My Heart 💕
-        </button>
-
-    </div>
-
-</section>
+    <!-- Background Music -->
+    <audio id="loveSong" loop preload="auto">
+        <source src="music/love-song.mp3" type="audio/mpeg">
+    </audio>
 
 
-<!-- Scratch Section -->
-<section id="scratchScreen" class="screen">
+    <!-- ================= START SCREEN ================= -->
 
-    <h1>Scratch Our Memories ❤️</h1>
+    <section id="startScreen" class="screen active">
 
-    <p id="progressText">
-        Memory 1 of 9
-    </p>
+        <div class="glass startBox">
 
-    <div id="scratchContainer"></div>
+            <div class="mainHeart">❤️</div>
 
-</section>
+            <h1>Our Little Love Story</h1>
 
+            <p>
+                I have something special<br>
+                waiting for you...
+            </p>
 
-<!-- Poem -->
-<section id="poemScreen" class="screen">
-
-    <div class="glass poemBox">
-
-        <div class="heart-animation">💗</div>
-
-        <h1>For You...</h1>
-
-        <p class="poem">
-
-            Unnodu pesum ovvoru nodiyum,<br>
-            En manadhil oru azhagana kavidhai... ❤️<br><br>
-
-            Un sirippil en santhosham,<br>
-            Un paarvaiyil en ulagam,<br>
-            Un kooda irukkum ovvoru naalum<br>
-            Enakku oru pudhiya thodakkam... 💕<br><br>
-
-            Indha vaazhkai muzhuvadhum,<br>
-            Un kaiya pidichu nadakka aasai...<br><br>
-
-            Ennodu indha payanathai<br>
-            Nee thodara virumbugiraaya? 💍
-
-        </p>
-
-        <button id="proposalBtn">
-            One Last Question ❤️
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- Proposal -->
-<section id="proposalScreen" class="screen">
-
-    <div class="glass proposalBox">
-
-        <div class="ring">💍</div>
-
-        <h1>Will You Marry Me?</h1>
-
-        <p>
-            I don't want a perfect life...<br>
-            I just want a life with you. ❤️
-        </p>
-
-        <div class="buttons">
-
-            <button id="yesBtn">
-                YES ❤️
-            </button>
-
-            <button id="noBtn">
-                NO 😢
+            <button id="startBtn" class="mainBtn">
+                Open My Heart 💕
             </button>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- Final Result -->
-<section id="resultScreen" class="screen">
 
-    <div class="glass">
+    <!-- ================= SCRATCH SCREEN ================= -->
 
-        <div id="resultEmoji"></div>
+    <section id="scratchScreen" class="screen">
 
-        <h1 id="resultTitle"></h1>
+        <div class="contentBox">
 
-        <p id="resultMessage"></p>
+            <h1>Scratch Our Memories ❤️</h1>
 
-    </div>
+            <p id="progressText">
+                Memory 1 of 9
+            </p>
 
-</section>
+            <p class="scratchHint">
+                Scratch the photo with your finger ❤️
+            </p>
+
+            <div id="scratchContainer"></div>
+
+        </div>
+
+    </section>
 
 
-<script src="script.js"></script>
+
+    <!-- ================= POEM SCREEN ================= -->
+
+    <section id="poemScreen" class="screen">
+
+        <div class="glass poemBox">
+
+            <div class="floatingHeart">💗</div>
+
+            <h1>For You...</h1>
+
+            <div class="poem">
+
+                Unnodu pesum ovvoru nodiyum,<br>
+                En manadhil oru azhagana kavidhai... ❤️
+                <br><br>
+
+                Un sirippil en santhosham,<br>
+                Un paarvaiyil en ulagam,<br>
+                Un kooda irukkum ovvoru naalum<br>
+                Enakku oru pudhiya thodakkam... 💕
+                <br><br>
+
+                Indha vaazhkai muzhuvadhum,<br>
+                Un kaiya pidichu nadakka aasai... 💗
+                <br><br>
+
+                Ennodu indha payanathai<br>
+                Nee thodara virumbugiraaya? 💍
+
+            </div>
+
+            <button id="proposalBtn" class="mainBtn">
+                One Last Question ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PROPOSAL SCREEN ================= -->
+
+    <section id="proposalScreen" class="screen">
+
+        <div class="glass proposalBox">
+
+            <div class="ring">
+                💍
+            </div>
+
+            <h1>
+                Will You Marry Me?
+            </h1>
+
+            <p>
+                I don't want a perfect life...<br>
+                I just want a life with you. ❤️
+            </p>
+
+            <div class="proposalButtons">
+
+                <button id="yesBtn" class="yesBtn">
+                    YES ❤️
+                </button>
+
+                <button id="noBtn" class="noBtn">
+                    NO 😢
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FINAL SCREEN ================= -->
+
+    <section id="resultScreen" class="screen">
+
+        <div class="glass resultBox">
+
+            <div id="resultEmoji">
+                💖
+            </div>
+
+            <h1 id="resultTitle"></h1>
+
+            <p id="resultMessage"></p>
+
+        </div>
+
+    </section>
+
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>
